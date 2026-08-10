@@ -34,14 +34,19 @@ jobs:
       - name: Run Build Command
         run: make
 
+      - name: Prepare build folder
+        run: |
+          mkdir -v build
+          cp -rv [0-9][0-9] build
+          rm -vf build/*/*.txt
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
       - name: Upload Build Artifacts
         uses: actions/upload-pages-artifact@v3
         with:
-          # Uploads the root directory so 01/, 02/, and root index.html are included
-          path: '.'
+          path: build
 
       - name: Deploy to GitHub Pages
         id: deployment
