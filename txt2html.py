@@ -1,5 +1,6 @@
 # Initial version vibe coded
 
+import glob
 import html
 import re
 import sys
@@ -102,6 +103,16 @@ def parse_block(lines):
                 )
             else:
                 html_out.append(f"<p>{html.escape(line)}</p>")
+            i += 1
+
+        # Lesson List
+        elif line.strip() == "lesson-list":
+            html_out.append("<ol>")
+            for subfolder in glob.glob("[0-9][0-9]"):
+                with open(f"{subfolder}/index.txt", "r") as file:
+                    title = file.readline().replace("title:", "", 1).strip()
+                html_out.append(f"<li><a href='{subfolder}/index.html'>{html.escape(title)}</a></li>")
+            html_out.append("</ol>")
             i += 1
 
         # Paragraph text
