@@ -204,7 +204,7 @@ question: Is an electron indivisible?
     <adder> OK
     <Akuli> you'd need to ask someone who is really really up to date with modern physics to find out :)
 
-question: What is a proton? And why does electricity flow in metals?
+question: What is a proton?
     <adder> So now I just got one more question.
     <adder> What is a proton?
     <Akuli> a proton, as far as i remember, is one of the things that electrons can spin around to form atoms
