@@ -14,7 +14,7 @@ I think this is a good thing.
 
 I don't explain absolutely everything,
 because there are some things that me and adder already know very well,
-but I try my best to anything that adder asks.
+but I try my best to answer anything that adder asks.
 For example, adder already had a multimeter when we started, so I didn't really explain what it is.
 As such, this site by itself is not enough to get started with electronics.
 However, I expect this site to be useful alongside some other intro-to-electronics resource of your choice.
