@@ -282,6 +282,10 @@ question: Can a wire be too big? Why chinese alligator clip cables have high res
     <adder> Let's not open up electromagnetism yet.  :D
     <Akuli> :)
 
+    akuli-note:
+        I highly recommend [this video by Matthias Wandel](https://www.youtube.com/watch?v=15sMogK3vTI)
+        if you want to learn more about the resistance of cheap alligator clip cables.
+
 
 ## Summarizing
 

@@ -9,6 +9,7 @@ import sys
 def parse_inline(text):
     """Parses inline formatting like **bold** text to HTML standard."""
     text = html.escape(text)
+    text = re.sub(r"\[([^\[\]]+)\]\(([^()]+)\)", (lambda m: f"<a href='{m.group(2)}'>{m.group(1)}</a>"), text)
     return re.sub(r"\*\*(.*?)\*\*", r"<strong>\1</strong>", text)
 
 
