@@ -1,0 +1,568 @@
+title: Voltage
+
+akuli-note:
+    Voltage is one of the most important concepts in electronics, if not **the** most important concept.
+    In this lesson, we discussed what exactly voltage is and how it behaves,
+    using batteries and a multimeter as an example.
+    We also learn how to test if a battery is empty.
+
+    To follow along, you need a multimeter and two or more batteries.
+    We used AA and AAA batteries, but any type of battery will do.
+    I also told adder that alligator clip cables might be useful, but we didn't end up using them.
+    The alligator clip cable below is mine, but adder's cables are very similar.
+
+    pic:
+        file: gator.jpg
+
+
+## Measuring 4 different batteries
+
+<adder> Ready.  Got a multimeter and gator clips with me.
+<Akuli> great :)
+<adder> Right, and different kinds of batteries.
+<Akuli> first, grab just the multimeter, and one battery (doesn't matter which)
+<Akuli> set the multimeter to volt, not the ~ one if you have two voltage settings (I don't remember)
+<Akuli> then, touch the multimeter probes to the battery in all kinds of different ways you can think of, and see what happens :)
+<Akuli> we'll collect some observations, then figure out simple rules to explain them all
+<Akuli> and then some intuition to make the rules not feel arbitrary
+<Akuli> sounds good?
+<adder> Yeah.
+<Akuli> i'll let you play around with it for a while, let me know when you have pretty much done everything you can think of :)
+<adder> So, I managed to get the meter to display ~1.2V when I connected up the probes to both of the battery's ends.
+<Akuli> great :)
+<adder> It doesn't matter which probe (black or red) goes on battery plus or minus.
+<adder> Otherwise just touching the battery body doesn't do anything.
+<Akuli> look at the meter carefully, there's one small difference if you swap the probes
+<adder> Like negative voltage?  I paid close attention to see a minus in front of the number, but I didn't see it.  Let me try again.
+<Akuli> yes :)
+<Akuli> oops, spoiled it i think
+<adder> Ah, right.  This is the minus under "DC".
+<Akuli> yeah, varies meter to meter
+<adder> So I think black on plus and red on minus is negative voltage?
+<Akuli> sounds right to me
+<Akuli> can you make it show anything meaningful at all if you touch just one probe?
+<adder> Sounds arbitrary to me.  :)
+<Akuli> this will make sense by the end of the day :)
+<adder> Just 0.001V.
+<Akuli> so basically nothing :D
+<Akuli> i think we've measured pretty much everything i can think of
+<Akuli> now grab another battery, and see what's same and what's different
+<adder> Has the battery "capacity" depleted now?  Has some "energy" run out?
+<Akuli> we'll find out, for now just remember the 1.2 volts you got
+<Akuli> see if other batteries are also 1.2 volts ish
+<adder> Smaller AAA battery (previous one was larger) gives out ~1.3V.
+<adder> A bit more than 1.3V.
+<Akuli> alright :) got more batteries? we could do maybe one more
+<Akuli> maybe one that you know is recently charged if rechargeable, or new if not
+<adder> The third one, also 1.246V, but I'm not sure what its status is.
+<Akuli> alright :)
+<adder> Like I don't know whether it's new or rechargeable or whatever.
+<Akuli> hmmm do i have a battery here
+<Akuli> found some new batteries
+<Akuli> i'll measure one and send pic
+
+pic:
+    from: Akuli
+    file: akuli_battery.jpg
+
+<Akuli> this is what a fresh battery looks like
+<adder> So a bit more voltage?
+<Akuli> yeah
+
+raw:
+    <table>
+        <tr>
+            <th>Battery</th>
+            <th>Type</th>
+            <th>Measured voltage</th>
+        </tr>
+        <tr>
+            <td>adder's first battery</td>
+            <td>AA</td>
+            <td>about 1.2V</td>
+        </tr>
+        <tr>
+            <td>adder's second battery</td>
+            <td>AAA</td>
+            <td>about 1.3V</td>
+        </tr>
+        <tr>
+            <td>adder's third battery</td>
+            <td>AA</td>
+            <td>1.246V</td>
+        </tr>
+        <tr>
+            <td>Akuli's battery</td>
+            <td>AA</td>
+            <td>1.593V</td>
+        </tr>
+    </table>
+
+
+## What does voltage mean?
+
+<Akuli> now look at your batteries
+<Akuli> there's some text on them
+<Akuli> it should say somewhere what the voltage is supposed to be
+<adder> The AAA says 1.5V.
+<Akuli> yep, how about the AA?
+<adder> Third one (AA) says 1.5V.
+<Akuli> yeah
+<Akuli> mine also says 1.5V, you can see in the pic
+<Akuli> right around the center of the battery
+<adder> First one says 1.2V.
+<Akuli> hmmm
+<Akuli> 1.2V is new to me
+<adder> Says Ni-MH AA 3000mAh 1.2V Rechargeable
+<Akuli> maybe i have some learning to do here :)
+<Akuli> i didn't know some AA batteries are designed to be 1.2V ish only
+<adder> :)
+<Akuli> so, what do the numbers mean? :)
+<Akuli> voltage is basically, how hard is the battery trying to push electricity from the plus terminal to the minus terminal
+<adder> So through the battery body?
+<Akuli> yeah
+<adder> OK
+<Akuli> hmm, not quite
+<Akuli> more like, through whatever you connect between the terminals
+<adder> Ah.
+<Akuli> for example, if you hold it in your hand so that your hand touches both terminals, a tiny amount of electricity flows through your hand
+<Akuli> you don't feel it because it's so small
+<Akuli> if the battery was pushing harder (let's say 50V or more), you would feel it and it would be painful :)
+<Akuli> ok?
+<adder> OK
+
+
+## Testing batteries by licking them
+
+<Akuli> that said, tongue is more sensitive than hands
+<Akuli> (i haven't tried other body parts)
+<adder> :)
+<Akuli> if you manage to somehow touch both terminals at the same time with your tongue, you will feel it
+<Akuli> that's why i suggested a 9V battery yesterday, the terminals are right next to each other
+<adder> Don't exactly wanna do that.  :-P
+<Akuli> yeah :D
+<Akuli> not required :)
+<Akuli> my dad tests 9V batteries that way
+<adder> :D
+<Akuli> you can feel how much voltage is left in the battery
+
+
+## Battery voltage decreasing
+
+<Akuli> so, a fresh battery has slightly more voltage than what's written on it
+<Akuli> as the battery is used, the voltage decreases
+<Akuli> we'll later see that it's a bit tricky to make a power supply that maintains the same voltage in all situations
+
+question: When nothing is connected to battery terminals, what does the voltage do?
+    <adder> Okay, so here's some questions that hold me back from "picturing" voltage.  Like, when nothing is connected to the terms, what does the voltage do?  Idle?  What exactly IS voltage that is idle, electricity?
+    <Akuli> the idle state is voltage but zero current
+    <Akuli> the battery wants electricity to go from + to -, but it's not going because nothing is connected
+    <adder> So voltage is still e.g. 1.2V?
+    <Akuli> yes
+    <Akuli> it's always there
+    <adder> OK
+    <adder> So air not a good conductor?
+    <Akuli> right
+    <Akuli> at least not at such low voltages
+
+question: Does holding a battery in your hand decrease its voltage?
+    <adder> If I held onto both terms with my hands, it would eventually decrease right?
+    <Akuli> yes
+    <Akuli> that's very slow though, if you're sweaty that speeds it up :)
+    <adder> OK
+
+question: What in the battery makes electricity to go from + to -?
+    <adder> So one more question.
+    <adder> You said, battery wants electricity to go from + to -.
+    <Akuli> right
+    <adder> Why is this?
+    <Akuli> the direction is arbitrary, and actually wrong
+    <adder> What in the battery is doing this?
+    <Akuli> the internals of a battery are chemistry go brrr
+    <adder> Right, right, but like, why is it behaving this way?
+    <Akuli> you'd need to ask someone who does chemistry
+    <adder> OK
+    <Akuli> for electronics, you're more interested in how it behaves as a voltage source
+
+
+## Electrons
+
+<adder> The takeawy, electricity wants to go from + to -, possibly reversed.
+<Akuli> electricity wants to go from + to -
+<Akuli> that's a convention though
+<Akuli> let me explain :)
+<Akuli> the things that actually move are electrons, and they physically move from - to +
+<Akuli> but before people knew that's what really happens, the meanings of + and - were already standardized
+<Akuli> so they didn't bother to switch those around
+<adder> OK
+
+question: Is an electron indivisible?
+    <adder> Is an electron already atomically indivisible unit?
+    <Akuli> as far as i know, yes
+    <adder> Like can we break it up into pieces?
+    <Akuli> as far as i know, no
+    <adder> OK
+    <Akuli> you'd need to ask someone who is really really up to date with modern physics to find out :)
+
+question: What is a proton? And why does electricity flow in metals?
+    <adder> So now I just got one more question.
+    <adder> What is a proton?
+    <Akuli> a proton, as far as i remember, is one of the things that electrons can spin around to form atoms
+    <adder> So is battery + somehow related to protons?
+    <adder> Logical plus.
+    <Akuli> it sure has many protons :)
+    <adder> I'm just trying to grasp wtf makes it flow.
+    <Akuli> there's multiple per atom, i think helium or hydrogen or something has just one electron and one proton, but most other atoms have a mix of both
+    <Akuli> and neutrons too
+    <adder> Ah, right, I remember now.
+
+
+## Resistance (very high level, will be covered in more detail later)
+
+<Akuli> the short answer to what makes it flow: some materials have electrons more loosely attached than others
+<Akuli> metals, in general, don't have their outermost electrons attached particularly tight to them
+<Akuli> so one atom can exchange electrons with another atom that sits next to it
+<adder> I see.
+<Akuli> during this process, the electrons don't flow losslessly along a straight line
+<Akuli> they bump around, they change direction, they wiggle their way through
+<Akuli> that's resistance :)
+<adder> So like resistance is caused by what?
+<adder> Air?
+<adder> Friction?
+<Akuli> basically friction
+<adder> OK
+<Akuli> it's not air, it's just electron movement not being an ideal straight line 
+<adder> I see.
+<Akuli> and heat is just vibrations of atoms
+<Akuli> i should mention, i might get some detail wrong, because i don't usually think about stuff at this level
+<adder> You mean, as electrons (atoms?) move, they generate heat?
+<Akuli> yeah
+<adder> OK
+<Akuli> the smoother they can move, the less resistive the material is and the less heat you get
+<Akuli> it also helps to just have more of the same material, so a thicker wire will heat up less
+<adder> OK
+
+question: How fast do electrons move? Speed vs current. Why a thicker wire has less resistance.
+    <adder> So one more question, is there a constant speed at which the electrons move, or is it like spermatozoids, where one is faster than the other?
+    <Akuli> the speed depends on the current (which is how much electrons are moving through a wire), and the size of the wire
+    <Akuli> it's surprisingly slow, i think i've calculated it at some point in physics class
+    <Akuli> but in general, if you have a narrow wire, the electrons will move faster through it for the same current
+    <Akuli> --> more heat
+    <adder> Sorry, wdym "how much" electrons?  Do you mean e.g. it depends on if 1, 5, or 1000 electrons are moving together?
+    <Akuli> let's say that the current is 1000 electrons per second
+    <Akuli> we could calculate how many amperes that would be
+    <Akuli> but amperes are literally electrons per second, scaled up to make the numbers nicer to work with
+    <Akuli> ok?
+    <adder> OK.
+    <Akuli> so if all the electrons move through a narrow spot, that spot becomes really busy
+    <Akuli> but if you have a bigger wire, they can spread out all over it
+    <adder> OK.
+    <Akuli> so that's why thicker wire has smaller resistance
+
+question: Can a wire be too big? Why chinese alligator clip cables have high resistance
+    <adder> Can a wire be too big?
+    <Akuli> yes, it just becomes expensive and inconvenient
+    <adder> Like so big electrons can't move?
+    <Akuli> no
+    <adder> OK.
+    <Akuli> usually real-world wires are some tradeoff between the resistance you want and money
+    <adder> OK.
+    <Akuli> for example, the alligator clips cables you and me have are surprisingly high resistance, because they're made cheaply in china
+    <adder> Meaning what, that the "teeth" are thin?
+    <adder> Or that the wire in between the pair of teeth is thin?
+    <Akuli> it's not about the clip itself, because the clip is plenty thick
+    <Akuli> it's about the 0.5m ish wire connecting the two clips
+    <adder> Right.
+    <adder> It's too thin?
+    <Akuli> yes, the wire inside the yellow plastic is too thin
+    <Akuli> and made of bad materials
+    <Akuli> pure copper is the traditional material for such wires, but it's really expensive now, so many new wires are a mix of all kinds of other stuff
+    <adder> I see.
+    <Akuli> there's even some iron in them, that's easy to test by bringing a magnet near the wire
+    <adder> Let's not open up electromagnetism yet.  :D
+    <Akuli> :)
+
+
+## Summarizing
+
+<Akuli> so, voltage is how much a battery wants electrons to go from minus to plus
+<Akuli> but for historical reasons we think of electricity as going from + to -
+<Akuli> voltage doesn't mean anything is moving though
+<Akuli> it just sits there ready to go
+<Akuli> ok?
+<adder> OK.
+
+
+## Negative voltage
+
+<Akuli> now the minus sign should make some more sense
+<Akuli> the meter is like, yes it wants to move like this, but in the opposite direction
+<Akuli> one very common color convention is that plus is red and minus is black
+<Akuli> so if you follow that, the meter gets the "usual" thing and shows no minus sign
+<Akuli> if you swap it, it notices that the direction is reversed
+<adder> When you say "direction", do you mean like a direction down to wire, from one end vs vice-versa?
+<adder> When you say "direction", do you mean like a direction down the wire, from one end vs vice-versa?
+<Akuli> i mean the direction along the wire that electricity wants to go
+<adder> Yeah.
+<Akuli> so if the meter notices that electricity wants to go in through the red probe and out the black probe, it shows a positive number
+<Akuli> and if that's reversed, it still shows the voltage but puts a minus sign
+<adder> So in your pic we have negative voltage, meaning what?
+<Akuli> i put the probes backwards
+<adder> Battery releases electrons through the red probe?
+<Akuli> yes
+<adder> OK.
+<Akuli> the meter says that electricity wants to come in through the black wire and go out the red wire
+<Akuli> (i.e. the same but opposite wires for raw electrons)
+<adder> So wait.
+<adder> Usually, forget the conventions, let's talk about what actually happens.
+<adder> We have a battery with + and -, that is with a bump (+) and a flat bottom (-).
+<Akuli> yep
+<adder> IN REALITY, electricity wants to flow from flat bottom out of the bump?
+<Akuli> yes, electrons want to go from the flat bottom to the bump
+<adder> OK.
+<Akuli> so if you invert the meter reading, you get what the electrons want to do
+<adder> Which, does not really matter for electronics?
+<Akuli> right
+<adder> OK.
+<Akuli> it's a convention, and when you work with existing components (which is always), you just follow the same conventions that the people who made the components
+<adder> OK.
+
+
+## Vacuum tubes
+
+<Akuli> the one situation where this does matter is vacuum tube technology, which is largely obsolete by now
+<adder> OK.
+<Akuli> in a vacuum tube, electrons jump from one metal plate to another
+<Akuli> before semiconductors (basically diodes and transistors), this was used to do what semiconductors do now
+<Akuli> for example, my dad's old guitar amplifier has a vacuum tube for converting AC to DC
+<adder> I see.
+<Akuli> which sounded ridiculous to me when i learned about it :)
+<Akuli> nowadays you would "of course" use diodes :)
+<Akuli> anyway, we'll come back to all that later
+
+
+## Summarizing
+
+<Akuli> do you have more questions about what happens with one battery and a multimeter? (great questions so far!)
+<adder> Well, I'm not sure.
+<Akuli> the tl;dr is, battery wants to put out electrons from its flat end to the little bump, which we call voltage from the little bump to the flat end
+<adder> I think we can continue and then if something needs worked on, we can always return.
+<Akuli> sure :)
+
+
+## Voltage is always between two points
+
+<Akuli> so a couple key things
+<Akuli> note that voltage is always between two points
+<adder> In this case between flat bottom and bump?
+<Akuli> yes
+<Akuli> typically two metal objects, but any conductive material could be used to reasonably measure a voltage
+<adder> OK.
+<Akuli> so technically, there's no such thing as "voltage of this point", though i myself use that phrase a lot, we'll talk about what that means soon
+<adder> OK.
+
+
+## Voltage from a point to itself (mathematically)
+
+<Akuli> i guess you tried touching both probes to the same point too?
+<adder> Yep.
+<Akuli> inventing some notation here, V(A -> A) = 0
+<Akuli> where A is any point
+<Akuli> ok?
+<adder> ok
+
+
+## Voltage backwards (mathematically)
+
+<Akuli> you also noticed: V(A -> B) = -V(B -> A)
+<Akuli> if you swap the wires, the sign changes :)
+<Akuli> ok?
+<adder> OK.
+<Akuli> mathematically, the first note is actually a consequence of the second
+<Akuli> if you plug in A in place of B, you get:  V(A -> A) = -V(A -> A)
+<Akuli> looks like x = -x
+<Akuli> solve that in whatever way you like, you get x=0
+<Akuli> ok?
+<adder> OK.
+<Akuli> so you could say we've made just one observation so far, V(A -> B) = -V(B -> A)
+<Akuli> ...and discussed what it means, of course
+<Akuli> ok?
+<adder> OK.
+<adder> It reminds me of vectors, and how vec(AB) = -vec(BA).
+<Akuli> yes :)
+<Akuli> very similar :) just one-dimensional instead of 2D or 3D
+<adder> I see.
+<Akuli> and a one-dimensional vector is just a number... so we use numbers for voltage... yeah
+<adder> Cool.
+
+
+## Two batteries
+
+<Akuli> let's make another observation that isn't covered by that
+<Akuli> take two batteries
+<Akuli> put them on the desk so that the plus of one battery touches the minus of the other
+<Akuli> (you may have seen this arrangement in some battery-powered devices)
+<Akuli> again, measure all the voltages you can think of :)
+
+question: I generally want black probe on minuses, and likewise, red on pluses?
+    <adder> Holy crap.
+    <adder> So just one question.
+    <adder> When I work in electronics, I generally want black probe on minuses, and likewise, red on pluses?
+    <Akuli> yes
+    <adder> If I want a somewhat sane result displayed on the meter?
+    <Akuli> it's no big deal if you get it wrong
+    <Akuli> you can always ignore the minus sign
+    <adder> OK.
+
+<adder> So...
+<adder> We chained up two batteries, and we increased the voltage.
+<Akuli> yep
+<adder> I'm not sure whether this was expected.  :D
+<Akuli> :)
+<Akuli> measure the batteries individually too
+<Akuli> see if you notice a pattern in the numbers you get
+<adder> They sum up to total voltage?
+<Akuli> yes :)
+<adder> OK, so first question, is this mathematically precise sum, or is anything here "lost"?
+<Akuli> this is a mathematically precise sum, as far as anyone designing any electrical device is concerned
+<adder> I see.
+<Akuli> some modern physics person might insert an achthually, but i don't think even they would
+<adder> lol
+<Akuli> try flipping one of the two batteries around
+<adder> Guess: it's gonna be the same total voltage, but negative.
+<adder> Let's see.
+<adder> Oh so they cancel out?
+<Akuli> yeah
+<Akuli> does this contradict the adding thing?
+<adder> No.
+<Akuli> right :D
+<adder> It's consistent.
+<Akuli> you're just adding a negative number
+<Akuli> now flip the other battery around too
+<adder> Like chained up nose-to-butt but in the other direction or?
+<Akuli> yes
+<adder> Negative voltage.
+<Akuli> yep :)
+<Akuli> now you're adding two negative numbers :)
+
+
+## The important formula
+
+<Akuli> so: V(A -> B) + V(B -> C) = V(A -> C)
+<Akuli> ok?
+<adder> OK.
+<Akuli> this is a really important fact
+<Akuli> a lot of electronics boils down to how does one voltage spread among multiple components
+<adder> OK.
+<Akuli> mathematically, our earlier two facts are actually consequences of this new fact...
+<Akuli> put A in place of B and C
+<Akuli> V(A -> A) + V(A -> A) = V(A -> A)
+<Akuli> looks like x + x = x, solution is x=0
+<Akuli> so V(A -> A) = 0
+<Akuli> ok?
+<adder> OK.
+<Akuli> with similar trickery you can derive V(A -> B) = -V(B -> A)
+<Akuli> i think just put A in place of C and you should get it
+<Akuli> ok?
+<adder> OK.
+<Akuli> so, basically everything we did today, in one equation
+<Akuli> (and a lot of understanding about what it all means of course...)
+<Akuli> ok?
+<adder> :)
+<adder> OK.
+<Akuli> this equation is basically the first thing i say when i'm explaining electronics to math people
+<Akuli> basically, "every metal object has a voltage, and it follows this law"
+<Akuli> or rather, "between any two metal objects there is a voltage, and it behaves so that..."
+<Akuli> this equation is so important that just knowing that much gets you very far :)
+<adder> OK.  :)
+
+
+## Floating
+
+<Akuli> there's actually a corner case here that looks like a contradiction, but isn't really
+<Akuli> the tl;dr is that the important equation is always true even though i'm about to show a case where it appears to be false
+<Akuli> ok?
+<adder> OK.
+<Akuli> take two batteries
+<Akuli> let's call them A and B
+<Akuli> let's call the terminals A+, A-, B+, B-
+<adder> OK.
+<Akuli> just let the batteries sit on the table without touching each other
+<adder> Sideways?
+<Akuli> doesn't matter
+<Akuli> as long as they don't touch
+<adder> OK.
+<Akuli> measure the voltage from A+ to B+
+<Akuli> what is it?
+<adder> ~0V.
+<Akuli> yep
+<Akuli> zero
+<Akuli> the batteries push electrons from minus to plus
+<Akuli> they have nowhere to go from the minus so there's no "i want to move" to be observed
+<Akuli> ok?
+<adder> OK.
+<Akuli> now measure the voltage from A- to B+
+<Akuli> what's that?
+<adder> 0v, too.
+<Akuli> yes
+<adder> 0V, too.
+<Akuli> same story, other end of the battery is not connected so nothing can move
+<Akuli> ok?
+<adder> OK.
+<Akuli> now measure the voltage from A+ to A-
+<adder> 1.226V
+<Akuli> let's try the important equation
+<Akuli> V(A+ -> B+) + V(B+ -> A-) = V(A+ -> A-)
+<Akuli> 0V + 0V = 1.226V
+<Akuli> ...what?
+<Akuli> ok?
+<adder> OK.
+<Akuli> the problem is that the multimeter shows zero when nothing is connected
+<Akuli> if you had two multimeters, and you measured V(A+ -> B+) and V(B+ -> A-) at the same time with them, you would get some pair of numbers that adds to 1.226V
+<Akuli> but if you measure them individually, the meter just shows 0 as a sort of weird default
+<adder> OK.
+<Akuli> so... what is the voltage really?
+<Akuli> the voltage really is zero when the meter says it's zero
+<Akuli> it just changes to zero wherever you put the meter
+<Akuli> the presence of the meter affects the thing you're trying to measure
+<adder> I see.
+<Akuli> basically, the meter has a small tendency to make whatever you put between the probes be zero
+<Akuli> it's so small that you can usually ignore it
+<Akuli> but in this corner case, it shows
+<Akuli> ok?
+<adder> OK.
+<Akuli> this problem is usually called floating
+<Akuli> as far as battery A can tell, the whole battery B is floating
+<Akuli> meaning disconnected
+<adder> OK.
+<Akuli> measuring voltages between any reasonable place (in battery A world) and B+ is just going to produce weird results
+<Akuli> so, a floating thing basically means a disconnected thing
+<adder> OK.
+<Akuli> sometimes it can be a challenge to notice that something is floating
+<adder> Yeah.
+<Akuli> other times your circuit is noisy enough that any floating part just picks up noise from nearby parts and you see that noise :D
+<adder> :)
+<Akuli> so, any weird signal that isn't what it should be at all: something is likely floating
+<Akuli> the reason why that is called floating will become clear when we talk about ground
+<Akuli> but i think i'll leave that for next time :)
+<adder> OK.  :)
+
+
+## Summary
+
+<Akuli> that's all i have for today :)
+<adder> Cool.
+<adder> Thank you.
+<Akuli> :)
+<adder> I might have some questions later if you're still here, if something pops up.
+<Akuli> tl;dr: V(A -> B) + V(B -> C) = V(A -> C) explained, caveats, applications
+<Akuli> ...and how to check if a battery is empty!
+<adder> Wait, how?
+<Akuli> measure voltage with the multimeter you already have
+<Akuli> more than what it says on the battery? good
+<Akuli> slightly less than what it says on the battery? not freshest, but fine
+<Akuli> way under? likely unusable but can depend on device
+<adder> Ah, obviously.
+<adder> Brain farted.
+<Akuli> or lick it if it's a 9V :D
+<adder> :)
