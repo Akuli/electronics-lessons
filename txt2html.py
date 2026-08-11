@@ -102,7 +102,7 @@ def convert_block(lines):
         # Lesson List
         elif line.strip() == "lesson-list":
             print("<ol>")
-            for subfolder in glob.glob("[0-9][0-9]"):
+            for subfolder in sorted(glob.glob("[0-9][0-9]"), key=int):
                 with open(f"{subfolder}/index.txt", "r") as file:
                     title = file.readline().replace("title:", "", 1).strip()
                 print(f"<li><a href='{subfolder}/index.html'>{html.escape(title)}</a></li>")
