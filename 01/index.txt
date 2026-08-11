@@ -287,7 +287,7 @@ question: Can a wire be too big? Why chinese alligator clip cables have high res
         if you want to learn more about the resistance of cheap alligator clip cables.
 
 
-## Summarizing
+## Summarizing what voltage means
 
 <Akuli> so, voltage is how much a battery wants electrons to go from minus to plus
 <Akuli> but for historical reasons we think of electricity as going from + to -
@@ -345,7 +345,7 @@ question: Can a wire be too big? Why chinese alligator clip cables have high res
 <Akuli> anyway, we'll come back to all that later
 
 
-## Summarizing
+## Summarizing what a battery does
 
 <Akuli> do you have more questions about what happens with one battery and a multimeter? (great questions so far!)
 <adder> Well, I'm not sure.
@@ -570,3 +570,8 @@ question: I generally want black probe on minuses, and likewise, red on pluses?
 <adder> Brain farted.
 <Akuli> or lick it if it's a 9V :D
 <adder> :)
+
+akuli-note:
+    The above way to check if a battery is empty works most of the time,
+    but there is one case when it doesn't work.
+    I will cover it during the next lesson (unless I forget...) and put that part of the conversation here.
