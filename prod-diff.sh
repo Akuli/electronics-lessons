@@ -14,10 +14,6 @@ YELLOW_TEXT='\033[1;33m'
 GREEN_TEXT='\033[1;32m'
 RESET='\033[0m'
 
-# 1. Run the build command
-echo "Building project..."
-make
-
 echo "Comparing local HTML files against GitHub Pages..."
 
 any_diffs=false
