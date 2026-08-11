@@ -304,7 +304,6 @@ question: Can a wire be too big? Why chinese alligator clip cables have high res
 <Akuli> one very common color convention is that plus is red and minus is black
 <Akuli> so if you follow that, the meter gets the "usual" thing and shows no minus sign
 <Akuli> if you swap it, it notices that the direction is reversed
-<adder> When you say "direction", do you mean like a direction down to wire, from one end vs vice-versa?
 <adder> When you say "direction", do you mean like a direction down the wire, from one end vs vice-versa?
 <Akuli> i mean the direction along the wire that electricity wants to go
 <adder> Yeah.
@@ -507,9 +506,8 @@ question: I generally want black probe on minuses, and likewise, red on pluses?
 <adder> OK.
 <Akuli> now measure the voltage from A- to B+
 <Akuli> what's that?
-<adder> 0v, too.
-<Akuli> yes
 <adder> 0V, too.
+<Akuli> yes
 <Akuli> same story, other end of the battery is not connected so nothing can move
 <Akuli> ok?
 <adder> OK.
