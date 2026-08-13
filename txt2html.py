@@ -18,15 +18,14 @@ def convert_block(lines):
     i = 0
     while i < len(lines):
         line = lines[i]
+        i += 1
 
         if not line.strip():
-            i += 1
             continue
 
         # Akuli Notes
         if line.startswith("akuli-note:"):
             note_lines = []
-            i += 1
             while i < len(lines) and (
                 lines[i].startswith("    ") or not lines[i].strip()
             ):
@@ -41,7 +40,6 @@ def convert_block(lines):
         elif line.startswith("question:"):
             q_title = line[9:].strip()
             q_lines = []
-            i += 1
             while i < len(lines) and (
                 lines[i].startswith("    ") or not lines[i].strip()
             ):
@@ -55,11 +53,9 @@ def convert_block(lines):
         # Headings
         elif line.startswith("## "):
             print(f"<h2>{html.escape(line[3:]).strip()}</h2>")
-            i += 1
 
         # Images/Pictures
         elif line.startswith("pic:"):
-            i += 1
             img_file = ""
             img_from = ""
             while i < len(lines) and lines[i].startswith("    "):
@@ -81,7 +77,6 @@ def convert_block(lines):
 
         # Raw HTML injection
         elif line.startswith("raw:"):
-            i += 1
             while i < len(lines) and (
                 lines[i].startswith("    ") or not lines[i].strip()
             ):
@@ -97,7 +92,6 @@ def convert_block(lines):
             print(
                 f'<div class="chat-msg"><span class="author {author.lower()}">{html.escape(author)}</span> {escaped_msg}</div>'
             )
-            i += 1
 
         # Lesson List
         elif line.strip() == "lesson-list":
@@ -105,20 +99,17 @@ def convert_block(lines):
             for subfolder in sorted(glob.glob("[0-9][0-9]"), key=int):
                 with open(f"{subfolder}/index.txt", "r") as file:
                     title = file.readline().replace("title:", "", 1).strip()
-                print(f"<li><a href='{subfolder}/index.html'>{html.escape(title)}</a></li>")
+                print(f'<li><a href="{subfolder}" class="lesson-list-link">{html.escape(title)}</a></li>')
             print("</ol>")
-            i += 1
+
+            # Make the links work without a web server when developing locally.
+            # I used to always have index.html at the end but I prefer short URLs.
+            print('<script>if(document.location.protocol === "file:") document.querySelectorAll("a.lesson-list-link").forEach(a => a.href += "/index.html");</script>')
 
         # Paragraph text
         else:
-            p_lines = []
-            while (
-                i < len(lines)
-                and lines[i].strip()
-                and not lines[i].startswith(
-                    ("akuli-note:", "question:", "## ", "pic:", "raw:", "<")
-                )
-            ):
+            p_lines = [line]
+            while i < len(lines) and lines[i].strip():
                 p_lines.append(lines[i].strip())
                 i += 1
             p_text = " ".join(p_lines)

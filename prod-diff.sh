@@ -5,10 +5,6 @@ set -euo pipefail
 
 BASE_URL="https://akuli.github.io/electronics-lessons"
 
-# Enable globstar so **/*.html captures files at any depth (e.g. ./01/index.html, ./sub/dir/index.html)
-# nullglob ensures empty matches don't evaluate to literal pattern strings
-shopt -s nullglob globstar
-
 # ANSI color codes
 YELLOW_TEXT='\033[1;33m'
 GREEN_TEXT='\033[1;32m'
@@ -19,14 +15,14 @@ echo "Comparing local HTML files against GitHub Pages..."
 any_diffs=false
 
 # 2. Loop over HTML files directly
-for file in *.html **/*.html; do
+for file in *.html */*.html; do
     # Skip if file doesn't exist (extra safety)
     [ -f "$file" ] || continue
 
     remote_url="${BASE_URL}/${file}"
 
     # Capture diff output silently
-    diff_output=$(diff -u --color=always <(curl -sL "$remote_url") "$file" || true)
+    diff_output=$(diff -u --color=always <(curl -fsL "$remote_url") "$file" || true)
 
     # Only output if differences were found
     if [ -n "$diff_output" ]; then
