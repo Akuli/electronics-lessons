@@ -442,6 +442,12 @@ question: Is this same as subtracting two points to get a vector?
     <Akuli> (or how in any language you can subtract indexes)
     <adder> Right.
 
+akuli-note:
+    Here are the voltages of all points.
+
+    pic:
+        file: voltages.jpg
+
 
 ## Choosing the ground point
 
@@ -453,6 +459,12 @@ question: Is this same as subtracting two points to get a vector?
 <adder> Right.  :)
 <Akuli> LED would sit at about -2 volts, the other alligator clip would sit at -7.7 volts
 <Akuli> it's just how that point sees the circuit :)
+
+akuli-note:
+    Here are the voltages of all points, with ground chosen to be the power supply positive.
+
+    pic:
+        file: voltages-positive-ground.jpg
 
 
 ## The other meaning of ground
