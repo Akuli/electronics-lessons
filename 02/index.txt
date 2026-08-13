@@ -1,0 +1,524 @@
+title: Ground
+
+akuli-note:
+    To follow along, you need:
+
+    raw:
+        <ul>
+            <li>Two AA or AAA batteries</li>
+            <li>Two alligator clip cables</li>
+            <li>1kΩ resistor</li>
+            <li>An LED (most colors other than blue will work)</li>
+            <li>A DC power supply with a round output plug (output voltage doesn't matter much, anything from 5V to 18V will work fine)</li>
+            <li>A piece of wire that fits inside the plug of the power supply</li>
+            <li>A multimeter</li>
+        </ul>
+
+    pic:
+        file: 20260814_015618.jpg
+
+
+## Lighting up an LED with batteries
+
+<adder> Grabbed:  breadboard, red LED, bunch of 1K resistors, gator clips, meter.
+<Akuli> great! :)
+<Akuli> the first thing we probably want to do is to get the LED to light up
+<adder> OK.
+<Akuli> tie a 1k resistor to one leg of the LED
+<Akuli> like, just twist one resistor leg and one LED leg together
+<Akuli> you can spread the LED legs to make more room
+<adder> Tied.
+<Akuli> then attach two alligator clip cables to the other two legs
+<Akuli> alligator ---- led --- resistor --- alligator
+<adder> You mean one gator with two ends?
+<Akuli> two gators
+<Akuli> each alligator cable will have one end still not connected anywhere
+<adder> Attached.
+<Akuli> now take the two batteries and place them so that the voltages add up to about 3V
+<Akuli> then touch the alligator clips to the 3V you created
+<Akuli> does the LED light up?
+<adder> Both clips?
+<Akuli> yeah
+<Akuli> cable1 --> battery --> battery --> cable2 --> led --> resistor --> cable1
+<Akuli> a loop
+<adder> I'm only outputtin 2.47V.
+<adder> Do I need a third battery?
+<Akuli> third battery may help, but 2.47V should be enough to see something
+<adder> Do I tie gator to battery bottom?
+<Akuli> if you can
+<adder> I can't.  :)
+<Akuli> you'll probably need to just hold it there
+<Akuli> got the LED lighted up?
+<Akuli> if you have one of these batteries, it might be easier to work with: https://imgur.com/a/Fn7gSO2
+<Akuli> these are 3V each
+<adder> Yeah, but I needed to reverse the cables.
+<Akuli> great! :)
+<Akuli> so you already noticed that LEDs only work one way :)
+<Akuli> so, walk me through the setup you have now that successfully lights the LED
+<Akuli> like, just explain what's connected where
+<adder> Like you've been saying, there is a red LED, to its longer leg is connected a 1K resistor, which is held by red gator, red gator touches the bottom of 2 chained batteries, and then green gator touches battery's bump and connects to shorter LED leg.
+
+akuli-note:
+    The resistor was actually connected to the shorter LED leg (minus), not the longer leg (plus).
+
+
+## Color convention
+
+<Akuli> a funny thing, but can you swap the red and green alligator cables around? :D
+<Akuli> this is just a convention thing, red is plus
+<Akuli> but clearer conventions lead to clearer thinking
+<Akuli> it's like misleading variable names in programming
+<adder> Sure.
+<adder> Reversed.
+
+akuli-note:
+    At this point, adder's setup looked something like this.
+
+    pic:
+        file: 20260814_020805.jpg
+
+
+## LED polarity
+
+<Akuli> led still working?
+<adder> Longer leg is minus?
+<Akuli> longer leg should be plus
+<Akuli> but it's possible your LED's legs are cut misleadingly, sometimes they are
+<adder> I got red gator attached to longer leg.
+<Akuli> that sounds correct
+<adder> And am connecting red gator to bump.
+<Akuli> great :)
+<Akuli> there's a tiny flat spot along one side of the LED
+<Akuli> it's on the minus side
+<Akuli> that's how you can always tell which way around the LED is
+<adder> Flat spot?
+<Akuli> yeah
+<adder> Can't see no flat spot.
+
+pic:
+    from: Akuli
+    file: LED-Cathode-600x338.jpg
+    caption-append: The picture is from [here](https://circuitcrush.com/how-leds-work-intro/).
+
+<Akuli> (cathode is another name for the minus leg of the LED)
+<adder> So my flat spot is where the resistor is.
+<Akuli> and resistor eventually goes to battery minus (flat end)
+<Akuli> so it all checks out, and should work
+<Akuli> is it working?
+<adder> Yeah.
+<Akuli> great :)
+<Akuli> so tl;dr for LED polarity:
+<Akuli> minus leg is usually short, flat spot is always on minus side
+<Akuli> ok?
+<adder> OK.
+<adder> So just one sec.
+<adder> We want to connect short leg (minus, in general) to plus?
+<Akuli> plus to plus, minus to minus
+<adder> Ah, sorry.  Missaw something.
+<Akuli> yeah, easy to get confused :)
+
+
+## Connecting alligator clips to batteries
+
+question: Akuli and adder try to connect cables to batteries for 24 minutes straight
+    akuli-note:    
+        This conversation doesn't look like 24 minutes, but it happened slowly while we both tried to set up stuff in our apartments.
+
+        Here's some appropriate music:
+
+        raw:
+            <audio controls src="entry-of-the-gladiators.mp3"></audio>
+            <br>
+            <small>The music is from <a href="https://commons.wikimedia.org/wiki/File:Julius_Fu%C4%8D%C3%ADk%27s_%22Entrance_of_the_Gladiators%22,_performed_by_the_U.S._Marine_Band.oga">here</a>.</small>
+
+    <Akuli> now measure all the voltages you can think of and let me know what you find out :)
+    <Akuli> if you have tape, that would be useful to hold together the batteries so you can measure voltages with two hands
+    <adder> I don't think I have the tape here.  :(
+    <adder> And have only two hands.
+    <Akuli> we could switch to your power supply if you have that
+    <adder> I do.
+    <Akuli> i think last time we stuck something inside the plug to get the plus in the middle
+    <Akuli> the middle is plus, the outside is minus
+    <adder> Hm, I don't think I have anywhere to insert it (no free slots).
+    <Akuli> :D
+    <adder> Can I take two more gators and touch batteries with them/
+    <Akuli> sure, but it's hard to get an alligator to stick to battery minus
+    <adder> Well...
+    <Akuli> do you maybe have rubber bands? or a hair tie?
+    <Akuli> or a magnet?
+    <Akuli> or could you unplug something temporarily to use the power supply?
+    <adder> Got rubber bands.
+    <Akuli> great! :D
+    <Akuli> you can use them to strap on an alligator clip to the minus side of a battery
+    <Akuli> probably want to attach the plus side first
+    <adder> Red gator to plus?
+    <Akuli> yes
+    <adder> I don't need a band for that.
+    <Akuli> :)
+    <adder> Let's see how the other side goes.
+    <Akuli> that one likely needs a rubber band
+    <adder> IDK how to do it?
+    <Akuli> trying to rig it up here to see if i can do it
+    <Akuli> guess who doesn't have rubber bands :D
+    <Akuli> (fortunately, this is a sort of mess that you figure out once, and then you know what works and what doesn't work)
+    <Akuli> if you're on a laptop, maybe you could go to a different room that has a free outlet?
+
+    pic:
+        from: Akuli
+        file: 20260813_223424.jpg
+
+    <Akuli> something like this, but with rubber band squeezing it instead of my hand
+    <adder> I'll go to another room and take the power supply with me.
+    <Akuli> great! :)
+    <adder> Just plug it in?
+    <Akuli> hmm
+    <Akuli> we might want to figure out the other end of it first
+    <Akuli> then plug in once everything is connected
+    <Akuli> there's no current limit on it, so it could make very tiny sparks, which are unlikely to be dangerous but might not be so nice to experience
+    <Akuli> ok?
+    <Akuli> (i will explain this in more detail later)
+    <adder> Are we about to cause a fire?
+    <Akuli> no
+    <Akuli> if you don't have a piece of paper nearby, no
+    <adder> I'm in bed.
+    <Akuli> :D
+    <Akuli> :DD
+    <adder> :)
+    <Akuli> i can't believe how difficult it is to get an LED to light up without touching anything :DDDDD
+    <adder> Breadboard?
+    <Akuli> this is a bit weird, but what do you think of hanging off the side of the bed so that you build the stuff on the floor while most of your body is on the bed?
+    <Akuli> this way, if you get a tiny spark for whatever reason, it's not on top of your bed sheets
+    <adder> Am really tired tbh to be hanging off bed.  :D
+    <Akuli> :D
+    <Akuli> we could go back to rubber bands
+    <Akuli> i managed to set up what i had in mind using gf's hair tie
+
+    pic:
+        from: Akuli
+        file: 20260813_224231.jpg
+
+    <adder> I think I'll do it on the night table.
+    <Akuli> night table sounds great!
+
+
+## Setting up the power supply
+
+<Akuli> so, you have the small round thing coming from the power supply that isn't plugged in yet?
+<adder> Plugged in where?
+<Akuli> i want to confirm two things:
+<Akuli> 1. power supply is not plugged in to wall yet
+<Akuli> 2. you are looking at the other end of the power supply, the small round thing
+<adder> 1. Correct
+<adder> 2. Correct
+<Akuli> great! :)
+<Akuli> the round plug has the visible outside, and the hole in the tip
+<Akuli> inside that hole is +
+<Akuli> outside is -
+<Akuli> ok?
+<adder> OK.
+<Akuli> do you have a piece of wire that fits inside the middle of the plug?
+<Akuli> i think that's how we set it up last time
+<adder> Yeah.
+<Akuli> great! :)
+<Akuli> stick it in, and put a red alligator clip cable onto that
+<Akuli> stick your green alligator cable straight onto the outside
+<Akuli> then connect to LED and resistor
+<adder> OK.
+<Akuli> once everything is hooked up, power it on and hope that the LED lights up :)
+<adder> Should I set it to 3V?
+<Akuli> whatever it's set to right now is fine
+<Akuli> the 1kΩ is enough resistance for a lot of supply voltage
+<adder> Burnz.
+<Akuli> i.e. works great?
+<adder> Yeah.
+<Akuli> nice! :)
+
+akuli-note:
+    At this point, adder's setup looked something like this.
+
+    pic:
+        file: 20260814_021302.jpg
+
+
+## Measuring voltages
+
+akuli-note:
+    Make sure you know [the important formula from the previous lesson](../01#the-important-formula).
+
+<Akuli> let's measure some voltages :)
+<Akuli> measure anything you can think of, and share results with me :)
+<adder> Tried to measure the green gator ends.
+<Akuli> like voltage from one end of gator to another?
+<Akuli> that voltage is very low, if you're reading 0.01V that may actually be correct
+<adder> Like 0.07V.
+<Akuli> hm, surprisingly much but could be
+<Akuli> how about across the LED? or the resistor? or both?
+<adder> Got -7.7V touching one resistor leg and one LED leg.
+<Akuli> like the outermost legs?
+<adder> -1.852V should be across led.
+<Akuli> that sounds right
+<adder> One leg of resistor is all twisted up so I can't really measure it?
+<Akuli> you can touch any part of the twisty mess
+<Akuli> or squeeze the probe onto it with your fingers
+<adder> 5.85 across resistor.
+<Akuli> remember the important formula from yesterday? :)
+<Akuli> does it apply here?
+<Akuli> 5.85V + (-1.852V) = -7.7V
+<adder> Yeah but the signs are weird.
+<Akuli> my guess is that you accidentally swapped the leads at some point
+<adder> If it's minus it should be less than 7?
+<Akuli> yeah
+<Akuli> if you keep the probes consistently oriented, it should be all positive, or all negative
+<Akuli> and then the formula would work out
+<Akuli> ok?
+<adder> Got correct signs with consistent probing.
+<Akuli> nice! :)
+
+raw:
+    <table>
+        <tr>
+            <th>Measured voltage</th>
+            <th>Value</th>
+        </tr>
+        <tr>
+            <td>Between the alligator clips</td>
+            <td>7.7V</td>
+        </tr>
+        <tr>
+            <td>Between LED legs</td>
+            <td>1.85V</td>
+        </tr>
+        <tr>
+            <td>Between resistor legs</td>
+            <td>5.85V</td>
+        </tr>
+    </table>
+
+
+## Why the resistor is needed
+
+<adder> It's like there's a big voltage coming out of the green gator, which then splits up among LED and resistor.
+<Akuli> yes, exactly!
+<Akuli> this is one of the many situations when the question is, how does a voltage spread among multiple components
+<Akuli> an LED that is turned on eats about 2V, depending on the LED and how bright it is and its color and a number of other details
+<Akuli> the rest, in this case, goes to the resistor
+<Akuli> ok?
+<adder> OK.
+<Akuli> without the resistor, the power supply would try to force all 7.7V on the LED
+<Akuli> the LED would probably flash really brightly for a fraction of a second and then break, never to shine again
+<Akuli> ok?
+<adder> Right, I remember this.
+<Akuli> :)
+
+
+## More convenience is needed
+
+<Akuli> so, let's talk about ground
+<Akuli> as you noticed, this way of measuring a circuit is kind of painful
+<Akuli> there's 3 different things you could be measuring, and each of the 3 could accidentally be backwards
+<Akuli> ok?
+<adder> OK.
+<Akuli> though you really only need to measure two things
+<Akuli> the equation is V(A -> B) + V(B -> C) = V(A -> C)
+<Akuli> so if you know any two of those, you can work out the third one
+<Akuli> ok?
+<adder> OK.
+<Akuli> so ideally, we'd have a method that makes this whole thing easier
+<Akuli> you want to be able to measure a voltage between any two points, but without the fuss
+<Akuli> ok?
+<adder> The other point being GND or 0V.
+<Akuli> not necessarily
+<Akuli> sometimes you do need a voltage across a component that doesn't connect to ground
+<adder> OK, scrap that.  :)
+<Akuli> if we're going to throw a convenience system around this thing, we must not lose any functionality
+<Akuli> ok?
+<adder> OK.
+
+
+## Attaching the black probe
+
+<Akuli> so here's how the convenience thing is gonna work
+<Akuli> you have the green alligator cable attached to the LED's minus leg
+<Akuli> hmm no
+<Akuli> it's attached to the resistor, right?
+<adder> Yep.
+<Akuli> stick your multimeter's black probe in between there too
+<Akuli> so that the green alligator cllip holds the black probe to the resistor while also providing minus power for the whole thing
+<Akuli> this black probe will stay there during all your measurements, and you will be measuring with just one probe instead of two
+<Akuli> ok?
+<adder> OK.
+<Akuli> got it stuck in?
+<adder> Yep.
+<Akuli> now measuring the resistor's voltage is easy
+<Akuli> you just touch the red probe to the other resistor leg, which is tied onto led
+<Akuli> ok?
+<Akuli> should get the same 5.85V
+<adder> OK.
+<Akuli> now, how to measure the voltage of the LED?
+<Akuli> you might think that you need to take out the black cable, but you don't
+<adder> 7.7 - Resistor Voltage
+<Akuli> yep :)
+<Akuli> you measure both ends and you subtract
+<adder> Both ends of what?
+<Akuli> both ends of the LED
+<adder> OK.
+<Akuli> LED voltage = 7.7V - 5.85V
+<Akuli> throw that to a calculator of your choice
+<adder> 1.85
+<Akuli> great :)
+
+
+## Why we subtract
+
+<Akuli> so, to be clear about why this works:
+<Akuli> let's say we want V(A -> B)
+<Akuli> ok?
+<adder> OK.
+<Akuli> we can do:  V(A -> B) = V(A -> TheGreenClip) + V(TheGreenClip -> B)
+<Akuli> ok?
+<adder> OK.
+<Akuli> V(A -> TheGreenClip) is easy, touch A with red probe
+<Akuli> ok?
+<adder> OK.
+<Akuli> there's no way to measure V(TheGreenClip -> B)
+<Akuli> but we can measure V(B -> TheGreenClip)
+<Akuli> and then calculate: V(TheGreenClip -> B) = -V(B -> TheGreenClip)
+<Akuli> ok?
+<adder> Needs another pass I think.
+<Akuli> sure
+<Akuli> so if you touch X with multimeter red probe, you measure V(X -> TheGreenClip)
+<adder> Sorry, am a bit disoriented and in a pretty awkward pose.
+<Akuli> :D
+<Akuli> ok?
+<adder> Let's forget TheGreenClip.
+<adder> Or does it matter/
+<Akuli> it does matter, but let's shorten it to G
+<Akuli> so V(anything -> G) is easy to measure
+<Akuli> just touch the thing
+<Akuli> ok?
+<adder> OK.
+<Akuli> we needed V(G -> anything)
+<Akuli> the other way, so just measure and put minus sign in front
+<Akuli> ok?
+<adder> OK.
+<Akuli> V(A -> B) = V(A -> G) + V(G -> B)
+<Akuli> ok?
+<adder> OK.
+<Akuli> V(A -> B) = V(A -> G) - V(B -> G)
+<Akuli> ok?
+<adder> OK.
+<Akuli> that's all i tried to say :)
+<Akuli> so that is why we subtract
+<adder> OK.
+
+
+## Ground and "voltage of a point"
+
+<Akuli> so, this is what ground is
+<Akuli> if you agree that all voltages are measured from whatever thing to the same point, it's easier to work on things
+<Akuli> ok?
+<adder> So ground is just a common reference point to measure voltages?
+<Akuli> yes!
+<adder> Not necessarily 0V.
+<Akuli> ground itself is 0V
+<Akuli> if you touch the red probe to the ground, you're just touching the probes to each other so the meter says 0V
+<adder> I see.
+<Akuli> ok?
+<adder> OK.
+<Akuli> so, now you notice that every point has a voltage
+<Akuli> technically, it's the voltage from that point to ground
+<Akuli> but practically, you just think of it as the voltage of that point
+<adder> OK.
+<Akuli> and any voltage between two points is just subtracting
+
+question: Is this same as subtracting two points to get a vector?
+    <adder> One sec.
+    <adder> Yknow how in vectors to get a vec out of two points, we subtract B-A?
+    <Akuli> yes :)
+    <adder> Is this the same?
+    <Akuli> this is the same
+    <adder> OK.
+    <Akuli> also the same as how in C, you subtract two pointers to get the offset from one pointer to another
+    <Akuli> (or how in any language you can subtract indexes)
+    <adder> Right.
+
+
+## Choosing the ground point
+
+<Akuli> any point in a circuit could be thought of as ground, and everything rewritten that way
+<Akuli> usually (not always), ground is chosen to be the most negative point in the circuit
+<adder> OK.
+<Akuli> in this case, your green alligator cable, since it plugs in to power supply negative
+<Akuli> if you instead chose ground to be power supply positive, then all the voltages you measure would be negative
+<adder> Right.  :)
+<Akuli> LED would sit at about -2 volts, the other alligator clip would sit at -7.7 volts
+<Akuli> it's just how that point sees the circuit :)
+
+
+## The other meaning of ground
+
+<Akuli> hmm, there's actually another meaning of "ground" i should distinguish to avoid confusion
+<Akuli> so far we've talked about the ground of your own electronics thing you're making
+<Akuli> ok?
+<adder> OK.
+<Akuli> but the world's electricity distribution network also has a ground
+<Akuli> it is connected to literal earth's ground, hence the name
+<adder> I see.
+<adder> Out of safety reasons or?
+<Akuli> yes, exactly
+<Akuli> ground is often connected to the box of a metal device
+<Akuli> (for various reasons)
+<Akuli> and you don't want your devices to be dangerous to touch if you're standing on literal ground
+<adder> OK.
+
+pic:
+    from: Akuli
+    file: socket.jpg
+    caption-append: The picture is from [here](https://www.amazon.com/Single-German-Standard-Electrical-European/dp/B0B282NVSR).
+
+<Akuli> sockets in your country look like that if i remember correctly?
+<Akuli> (that's what they look like here)
+<adder> Yep.
+<Akuli> those metal clips are ground clips
+<Akuli> there's two in case one is broken
+<adder> I see.
+
+question: Are ground of stuff interconnected all the way to literal ground?
+    <adder> Are ground of stuff interconnected all the way to literal ground?
+    <Akuli> yes
+    <adder> I see.
+    <Akuli> typically at each house, there is a wire buried into literal ground, and connected to the electricity system's ground
+    <adder> I see.
+
+question: Ground fault protection
+    <Akuli> i'll tell you one more thing about this system's way to use ground
+    <Akuli> it is a safety feature
+    <Akuli> the metal cases of devices are connected to ground
+    <Akuli> so, if any wire inside the device gets loose and touches the case, the device likely starts consuming electricity through the ground wires
+    <Akuli> this should never happen normally
+    <Akuli> ok?
+    <adder> OK.
+    <Akuli> there's things literally called ground fault protection, that check for this exact thing
+    <Akuli> and just turn off the power when that happens
+    <adder> I see.
+    <Akuli> so instead of getting a dangerous amount of electricity to the case, a protection thing turns it off
+    <Akuli> especially important in bathrooms and toilets and such where things can get wet
+    <adder> I see.
+
+<Akuli> so in electronics, we don't usually care about any of that
+<adder> OK, sounded like a lot to learn.  :)
+<adder> It's so strange as a notion.
+<Akuli> in electronics, ground is just a convenient way to define "voltage of a point", a very useful concept
+<Akuli> and we just talk about "voltage of this point" and implicitly reference a ground point
+<adder> OK.
+<Akuli> your device's ground may not even be connected to the electricity distribution's ground!
+<Akuli> for example, your phone's ground isn't connected that way, even when the charger is plugged in
+<Akuli> the chargers typically don't use the ground clips
+<Akuli> ok?
+<adder> OK, but I will likely forget this.  :)
+<Akuli> :)
+<Akuli> yeah
+<adder> Let's call it a day?
+<Akuli> just wanted to bring up that there's two notions of ground, and the one we use is just a convenient way to measure voltages
+<Akuli> yes, let's call it a day :)
+<adder> Cool, thanks.

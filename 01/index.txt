@@ -6,9 +6,16 @@ akuli-note:
     using batteries and a multimeter as an example.
     We also learn how to test if a battery is empty.
 
-    To follow along, you need a multimeter and two or more batteries.
-    We used AA and AAA batteries, but any type of battery will do.
-    I also told adder that alligator clip cables might be useful, but we didn't end up using them.
+    To follow along, you need:
+
+    raw:
+        <ul>
+            <li>A multimeter</li>
+            <li>Two or more batteries (we used AA and AAA batteries, but any type of battery will do)</li>
+        </ul>
+
+    I also told adder that alligator clip cables might be useful.
+    We talked about them but we didn't end up using them.
     The alligator clip cable below is mine, but adder's cables are very similar.
 
     pic:
@@ -217,7 +224,7 @@ question: What is a proton?
     <adder> Ah, right, I remember now.
 
 
-## Resistance (very high level, will be covered in more detail later)
+## Resistance (will be covered in more detail later)
 
 <Akuli> the short answer to what makes it flow: some materials have electrons more loosely attached than others
 <Akuli> metals, in general, don't have their outermost electrons attached particularly tight to them
@@ -569,7 +576,36 @@ question: I generally want black probe on minuses, and likewise, red on pluses?
 <Akuli> or lick it if it's a 9V :D
 <adder> :)
 
+
+## Caveat with measuring batteries
+
 akuli-note:
-    The above way to check if a battery is empty works most of the time,
-    but there is one case when it doesn't work.
-    I will cover it during the next lesson (unless I forget...) and put that part of the conversation here.
+    This conversation actually happened at the start of the next lesson. I placed it here because it is essentially a correction to what I said above.
+
+<Akuli> before we begin today's actual topic i'd like to add an achthlually to last time's stuff
+<Akuli> the way i taught you to measure if a battery is empty can be misleading
+<Akuli> i'll explain how
+<Akuli> ok?
+<adder> OK.
+<Akuli> to illustrate this, i took my dead batteries pile, and measured 14 batteries in it
+<Akuli> (i have many more, but some of them have leaked, so i didn't want to dig deeper into the pile)
+<Akuli> ok?
+<adder> OK.
+<Akuli> 11 of them showed a voltage that was clearly way too small
+<Akuli> 3 of them showed a voltage that looked quite ok
+<Akuli> one of them was a 9V battery that measured 8.7V
+<Akuli> so, voltages like that, a little low but looks usable
+<Akuli> ok?
+<adder> OK.
+<Akuli> so what's going on? did i really throw away good batteries?
+<Akuli> the thing is, battery voltage decreases under load, i.e. when you actually try to use the battery
+<Akuli> a simple multimeter check measures the voltage of the battery with no load attached
+<Akuli> but the actual voltage while using the battery will be lower
+<Akuli> ok?
+<adder> OK.
+<Akuli> in a fresh battery, the voltage doesn't drop much
+<Akuli> in a dead battery, it typically drops more
+<Akuli> and this effect can be so big that a dead battery appears fine when measured with multimeter
+<Akuli> so, if multimeter shows a very low voltage, you know the battery is dead, but if the multimeter shows a slightly low voltage, you don't really know and you may want to try a fresh battery anyway
+<Akuli> ok?
+<adder> OK.

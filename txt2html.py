@@ -52,25 +52,32 @@ def convert_block(lines):
 
         # Headings
         elif line.startswith("## "):
-            print(f"<h2>{html.escape(line[3:]).strip()}</h2>")
+            text = line[3:].strip()
+            id = "-".join(re.findall(r"[A-Za-z0-9]+", text)).lower()
+            print(f'<h2 id="{id}">{html.escape(text)}</h2>')
 
         # Images/Pictures
         elif line.startswith("pic:"):
             img_file = ""
             img_from = ""
+            img_caption_append = ""
             while i < len(lines) and lines[i].startswith("    "):
                 sub_line = lines[i].strip()
                 if sub_line.startswith("file:"):
                     img_file = sub_line[5:].strip()
                 elif sub_line.startswith("from:"):
                     img_from = sub_line[5:].strip()
+                elif sub_line.startswith("caption-append:"):
+                    img_caption_append = sub_line[15:].strip()
                 i += 1
 
-            caption = (
-                f"<figcaption>Photo by {img_from}</figcaption>"
-                if img_from
-                else ""
-            )
+            caption = f"{img_from} sent a picture." if img_from else ""
+            if img_caption_append:
+                caption += " "
+                caption += parse_inline(img_caption_append)
+            caption = caption.strip()
+            if caption:
+                caption = f"<figcaption>{caption}</figcaption>"
             print(
                 f'<figure class="image-box"><img src="{html.escape(img_file)}" alt="Lesson Image">{caption}</figure>'
             )
@@ -101,10 +108,6 @@ def convert_block(lines):
                     title = file.readline().replace("title:", "", 1).strip()
                 print(f'<li><a href="{subfolder}" class="lesson-list-link">{html.escape(title)}</a></li>')
             print("</ol>")
-
-            # Make the links work without a web server when developing locally.
-            # I used to always have index.html at the end but I prefer short URLs.
-            print('<script>if(document.location.protocol === "file:") document.querySelectorAll("a.lesson-list-link").forEach(a => a.href += "/index.html");</script>')
 
         # Paragraph text
         else:
@@ -213,6 +216,31 @@ def main():
     }
     """
 
+    js = r"""
+    // During local development, add /index.html to all links that point at directories
+    // Example: <a href="01">...</a> --> <a href="01/index.html">...</a>
+    if (document.location.protocol === "file:") {
+        document.addEventListener("DOMContentLoaded", () => {
+            for (const a of document.querySelectorAll("a")) {
+                try {
+                    const url = new URL(a.href, window.location.href);
+
+                    // Regex checks if the pathname ends with a 2-digit segment 
+                    // e.g., matches "/01" or ".../12", but not "/123" or "/page01"
+                    if (/(?:^|\/)[0-9][0-9]$/.test(url.pathname)) {
+                        url.pathname += "/index.html";
+                        const old = a.href;
+                        a.href = url.toString();
+                        console.log(`${old} --> ${a.href}`);
+                    }
+                } catch {
+                    // Ignore invalid URLs (e.g., mailto:, javascript:, or malformed strings)
+                }
+            }
+        });
+    }
+    """
+
     print(f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -220,6 +248,7 @@ def main():
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{html.escape(title)}</title>
     <style>{css}</style>
+    <script>{js}</script>
 </head>
 <body>
     <h1>{html.escape(title)}</h1>

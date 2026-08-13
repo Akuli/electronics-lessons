@@ -2,7 +2,7 @@ title: Electronics Lessons
 
 Hello, and welcome to this site!
 
-I am Akuli, and I'm teaching electronics to my friend adder
+I am Akuli, and I'm teaching electronics to my friend [adder](https://github.com/xqb64)
 with the goal of making adder **understand** electronics very well.
 This site contains our chat logs with a bit of cleanup and organization to make them readable.
 
@@ -13,8 +13,7 @@ and if you're new to electronics, you will likely learn slightly more things tha
 I think this is a good thing.
 
 I don't explain absolutely everything,
-because there are some things that me and adder already know very well,
-but I try my best to answer anything that adder asks.
+because there are some things that me and adder already know very well.
 For example, adder already had a multimeter when we started, so I didn't really explain what it is.
 As such, this site by itself is not enough to get started with electronics.
 However, I expect this site to be useful alongside some other intro-to-electronics resource of your choice.
