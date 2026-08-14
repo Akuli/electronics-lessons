@@ -16,10 +16,9 @@ akuli-note:
 
     I also told adder that alligator clip cables might be useful.
     We talked about them but we didn't end up using them.
-    The alligator clip cable below is mine, but adder's cables are very similar.
 
     pic:
-        file: gator.jpg
+        file: 20260814_033109.jpg
 
 
 ## Measuring 4 different batteries
