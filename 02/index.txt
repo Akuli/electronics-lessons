@@ -120,7 +120,7 @@ pic:
 
 ## Connecting alligator clips to batteries
 
-question: Akuli and adder try to connect cables to batteries for 24 minutes straight
+question: Akuli and adder try to connect cables to batteries for 24 minutes
     akuli-note:    
         This conversation doesn't look like 24 minutes, but it happened slowly while we both tried to set up stuff in our apartments.
 
@@ -166,6 +166,7 @@ question: Akuli and adder try to connect cables to batteries for 24 minutes stra
     pic:
         from: Akuli
         file: 20260813_223424.jpg
+        max-width: 50%
 
     <Akuli> something like this, but with rubber band squeezing it instead of my hand
     <adder> I'll go to another room and take the power supply with me.
@@ -196,6 +197,7 @@ question: Akuli and adder try to connect cables to batteries for 24 minutes stra
     pic:
         from: Akuli
         file: 20260813_224231.jpg
+        max-width: 50%
 
     <adder> I think I'll do it on the night table.
     <Akuli> night table sounds great!
@@ -216,6 +218,12 @@ question: Akuli and adder try to connect cables to batteries for 24 minutes stra
 <Akuli> outside is -
 <Akuli> ok?
 <adder> OK.
+
+akuli-note:
+    If you happen to use a power supply that was made for guitar pedals,
+    the plus and minus are backwards: plus outside, minus inside.
+    I don't know why that became the standard for guitar pedals.
+
 <Akuli> do you have a piece of wire that fits inside the middle of the plug?
 <Akuli> i think that's how we set it up last time
 <adder> Yeah.
@@ -447,6 +455,7 @@ akuli-note:
 
     pic:
         file: voltages.jpg
+        max-width: 50%
 
 
 ## Choosing the ground point
@@ -465,6 +474,7 @@ akuli-note:
 
     pic:
         file: voltages-positive-ground.jpg
+        max-width: 50%
 
 
 ## The other meaning of ground

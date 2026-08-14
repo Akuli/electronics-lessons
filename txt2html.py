@@ -61,6 +61,7 @@ def convert_block(lines):
             img_file = ""
             img_from = ""
             img_caption_append = ""
+            img_max_width = "100%"
             while i < len(lines) and lines[i].startswith("    "):
                 sub_line = lines[i].strip()
                 if sub_line.startswith("file:"):
@@ -69,6 +70,10 @@ def convert_block(lines):
                     img_from = sub_line[5:].strip()
                 elif sub_line.startswith("caption-append:"):
                     img_caption_append = sub_line[15:].strip()
+                elif sub_line.startswith("max-width:"):
+                    img_max_width = sub_line[10:].strip()
+                else:
+                    raise ValueError(sub_line)
                 i += 1
 
             caption = f"{img_from} sent a picture." if img_from else ""
@@ -79,7 +84,7 @@ def convert_block(lines):
             if caption:
                 caption = f"<figcaption>{caption}</figcaption>"
             print(
-                f'<figure class="image-box"><img src="{html.escape(img_file)}" alt="Lesson Image">{caption}</figure>'
+                f'<figure class="image-box"><img src="{html.escape(img_file)}" style="max-width: {img_max_width}" alt="Lesson Image">{caption}</figure>'
             )
 
         # Raw HTML injection
