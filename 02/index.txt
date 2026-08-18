@@ -49,8 +49,6 @@ akuli-note:
 <adder> I can't.  :)
 <Akuli> you'll probably need to just hold it there
 <Akuli> got the LED lighted up?
-<Akuli> if you have one of these batteries, it might be easier to work with: https://imgur.com/a/Fn7gSO2
-<Akuli> these are 3V each
 <adder> Yeah, but I needed to reverse the cables.
 <Akuli> great! :)
 <Akuli> so you already noticed that LEDs only work one way :)
