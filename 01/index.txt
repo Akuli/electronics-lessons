@@ -8,11 +8,8 @@ akuli-note:
 
     To follow along, you need:
 
-    raw:
-        <ul>
-            <li>A multimeter</li>
-            <li>Two or more batteries (we used AA and AAA batteries, but any type of battery will do)</li>
-        </ul>
+    - A multimeter
+    - Two or more batteries (we used AA and AAA batteries, but any type of battery will do)
 
     I also told adder that alligator clip cables might be useful.
     We talked about them but we didn't end up using them.

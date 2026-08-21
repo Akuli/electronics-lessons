@@ -3,16 +3,13 @@ title: Ground
 akuli-note:
     To follow along, you need:
 
-    raw:
-        <ul>
-            <li>Two AA or AAA batteries</li>
-            <li>Two alligator clip cables</li>
-            <li>1kΩ resistor</li>
-            <li>An LED (most colors other than blue will work)</li>
-            <li>A DC power supply with a round output plug (output voltage doesn't matter much, anything from 5V to 18V will work fine)</li>
-            <li>A piece of wire that fits inside the plug of the power supply</li>
-            <li>A multimeter</li>
-        </ul>
+    - Two AA or AAA batteries
+    - Two alligator clip cables
+    - 1kΩ resistor
+    - An LED (most colors other than blue will work)
+    - A DC power supply with a round output plug (output voltage doesn't matter much, anything from 5V to 18V will work fine)
+    - A piece of wire that fits inside the plug of the power supply
+    - A multimeter
 
     pic:
         file: 20260814_015618.jpg
