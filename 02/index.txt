@@ -93,7 +93,7 @@ akuli-note:
 pic:
     from: Akuli
     file: LED-Cathode-600x338.jpg
-    caption-append: This is a 1500 watt heater. The picture is from [here](https://circuitcrush.com/how-leds-work-intro/).
+    caption-append: The picture is from [here](https://circuitcrush.com/how-leds-work-intro/).
 
 <Akuli> (cathode is another name for the minus leg of the LED)
 <adder> So my flat spot is where the resistor is.

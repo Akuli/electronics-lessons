@@ -3,7 +3,7 @@ title: Resistance
 akuli-note:
     To follow along, you need:
 
-    - The LED-and-resistor setup from [lesson 2](../02) (power supply, wire that fits inside power supply plug, alligator clip cables, 1kΩ resistor, LED)
+    - The LED-and-resistor setup from [lesson 2](../02): power supply, wire that fits inside power supply plug, alligator clip cables, 1kΩ resistor, LED
     - 1kΩ resistor (part of the lesson 2 setup)
     - 10kΩ resistor
     - A multimeter that can measure currents
@@ -180,7 +180,8 @@ question: Chained resistors = sum(resistance)?
     <Akuli> yes, but we'll get there later (also depends on how you chain them)
     <adder> OK.
 
-    TODO: add explanation from "later"
+    akuli-note:
+        The "later" is [the end of the next lesson](../05#combining-multiple-resistors-to-handle-more-power).
 
 
 ## Calculating the LED current
@@ -245,14 +246,15 @@ example: 5V power supply, 1kΩ resistor
     <Akuli> no need to mess around with V = IR to see that
     <adder> OK.
 
-<adder> Notice how V=IR
-<adder> V=IR
-<adder> VIR
-<adder> IV/R
-<adder>  / comes to the place of I
-<adder> and it still looks like the original formula.
-<adder> :)
-<Akuli> :D
+comment:
+    <adder> Notice how V=IR
+    <adder> V=IR
+    <adder> VIR
+    <adder> IV/R
+    <adder>  / comes to the place of I
+    <adder> and it still looks like the original formula.
+    <adder> :)
+    <Akuli> :D
 
 
 ## Choosing a resistor for an LED

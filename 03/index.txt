@@ -3,8 +3,7 @@ title: Current
 akuli-note:
     To follow along, you need:
 
-    - 1kΩ resistor
-    - 10kΩ resistor
+    - The LED-and-resistor setup from [lesson 2](../02): power supply, wire that fits inside power supply plug, alligator clip cables, 1kΩ resistor, LED
     - A multimeter that can measure currents
 
     TODO: picture
@@ -83,6 +82,7 @@ akuli-note:
 pic:
     file: 20260818_212030.jpg
     from: Akuli
+    max-width: 70%
 
 <Akuli> PRI (primary) is basically input and SEC (secondary) is basically output
 <adder> OK.

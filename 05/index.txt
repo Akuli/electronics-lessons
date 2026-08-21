@@ -83,15 +83,14 @@ title: Power
 <Akuli> joule is the unit of energy
 <Akuli> ok?
 <adder> OK.
-<Akuli> this is not at all an insane amount of energy for something that's supposed to help heat up a room
-<Akuli> s/energy/power/
+<Akuli> this is not at all an insane amount of power for something that's supposed to help heat up a room
 <Akuli> maybe i should look up some heaters to confirm
 <Akuli> a random heater i found online:
 
 pic:
     from: Akuli
     file: heater.jpg
-    caption-append: The picture is from [here](https://www.biltema.fi/rakentaminen/lvi/lammitys/lampopatterit/oljylammittimet/oljytaytteinen-lampopatteri-1500-w-2000051695).
+    caption-append: The picture is from [the website that sells the heater](https://www.biltema.fi/rakentaminen/lvi/lammitys/lampopatterit/oljylammittimet/oljytaytteinen-lampopatteri-1500-w-2000051695).
     max-width: 50%
 
 <Akuli> this one is 1.5 kW
@@ -399,3 +398,11 @@ example: Maximum voltage of standard 1kΩ 0.25W resistor
 <Akuli> so that sort of tricks can be used to work around power issues, if you don't want to buy the right thing
 <Akuli> i think that's all you need to know about power :)
 <adder> OK.  :)
+
+akuli-note:
+    The first kind of chaining I showed is called **series**, and the second is called **parallel**.
+
+    For resistors in series, you can add the resistances as I explained.
+    But we didn't discuss how to combine the resistances of multiple parallel resistors with different resistances
+    (the only example was three 1Ω resistors).
+    There is a formula for that, and you will find it easily if you look for it online.
