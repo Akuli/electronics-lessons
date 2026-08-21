@@ -36,8 +36,8 @@ def convert_block(lines):
             convert_block(note_lines)
             print("</div>")
 
-        # Questions (Collapsible)
-        elif line.startswith("question:"):
+        # Collapse (basic/generic variant)
+        elif line.startswith("collapse:"):
             q_title = line[9:].strip()
             q_lines = []
             while i < len(lines) and (
@@ -46,7 +46,41 @@ def convert_block(lines):
                 q_lines.append(lines[i][4:] if len(lines[i]) >= 4 else "")
                 i += 1
 
-            print(f'<details><summary>{html.escape(q_title)}</summary><div class="question-content">')
+            print(f'<details><summary>{html.escape(q_title)}</summary><div class="collapse-content">')
+            convert_block(q_lines)
+            print('</div></details>')
+
+        # Questions
+        #
+        # TODO: handle these somehow slightly differently than "collapse"?
+        #       These could be a specific, fancy type of collapse.
+        elif line.startswith("question:"):
+            q_title = line.split(":", maxsplit=1)[1].strip()
+            q_lines = []
+            while i < len(lines) and (
+                lines[i].startswith("    ") or not lines[i].strip()
+            ):
+                q_lines.append(lines[i][4:] if len(lines[i]) >= 4 else "")
+                i += 1
+
+            print(f'<details><summary>{html.escape(q_title)}</summary><div class="collapse-content">')
+            convert_block(q_lines)
+            print('</div></details>')
+
+        # Examples
+        #
+        # TODO: handle these somehow slightly differently than "collapse"?
+        #       These could be a specific, fancy type of collapse.
+        elif line.startswith("example:"):
+            q_title = line.split(":", maxsplit=1)[1].strip()
+            q_lines = []
+            while i < len(lines) and (
+                lines[i].startswith("    ") or not lines[i].strip()
+            ):
+                q_lines.append(lines[i][4:] if len(lines[i]) >= 4 else "")
+                i += 1
+
+            print(f'<details><summary>Example: {html.escape(q_title)}</summary><div class="collapse-content">')
             convert_block(q_lines)
             print('</div></details>')
 
@@ -87,6 +121,49 @@ def convert_block(lines):
                 f'<figure class="image-box"><img src="{html.escape(img_file)}" style="max-width: {img_max_width}" alt="Lesson Image">{caption}</figure>'
             )
 
+        # PDF datasheets
+        elif line.startswith("datasheet:"):
+            pdf_file = ""
+            pdf_from = ""
+            pdf_caption_append = ""
+            while i < len(lines) and lines[i].startswith("    "):
+                sub_line = lines[i].strip()
+                if sub_line.startswith("file:"):
+                    pdf_file = sub_line[5:].strip()
+                elif sub_line.startswith("from:"):
+                    pdf_from = sub_line[5:].strip()
+                elif sub_line.startswith("caption-append:"):
+                    pdf_caption_append = sub_line[15:].strip()
+                else:
+                    raise ValueError(sub_line)
+                i += 1
+
+            escaped_file = html.escape(pdf_file)
+            download_link = f'<a href="{escaped_file}" target="_blank" rel="noopener noreferrer">Click here to open the datasheet.</a>'
+
+            caption_parts = []
+            if pdf_from:
+                caption_parts.append(f"{pdf_from} shared a PDF datasheet.")
+            if pdf_caption_append:
+                caption_parts.append(parse_inline(pdf_caption_append))
+            
+            caption_parts.append(f"{download_link}")
+            caption = f"<figcaption>{' '.join(caption_parts)}</figcaption>"
+
+            print(
+                f'<figure class="pdf-box">'
+                f'<object data="{escaped_file}" type="application/pdf" width="100%" height="600px"></object>'
+                f'{caption}'
+                f'</figure>'
+            )
+
+        # Comment/ignore
+        elif line.startswith("comment:"):
+            while i < len(lines) and (
+                lines[i].startswith("    ") or not lines[i].strip()
+            ):
+                i += 1
+
         # Raw HTML injection
         elif line.startswith("raw:"):
             while i < len(lines) and (
@@ -105,7 +182,7 @@ def convert_block(lines):
 
         # IRC Chat Messages
         elif line.startswith("<"):
-            match = re.match(r"^<([^>]+)>\s*(.*)$", line)
+            match = re.match(r"^<([^>]+)> (.*)$", line)
             assert match
             author, msg = match.groups()
             escaped_msg = html.escape(msg)
@@ -166,6 +243,7 @@ def main():
     }
     .chat-msg {
         font-family: monospace;
+        white-space: pre-wrap;  /* for ASCII art drawings */
         background: #f8f9fa;
         padding: 4px 8px;
         border-radius: 4px;
@@ -196,7 +274,7 @@ def main():
         cursor: pointer;
         color: #2c3e50;
     }
-    .question-content {
+    .collapse-content {
         margin-top: 10px;
         padding-top: 10px;
         border-top: 1px solid #dcdfe3;
@@ -213,6 +291,7 @@ def main():
     figcaption {
         font-size: 0.85em;
         color: #666;
+        text-align: center;
     }
     table {
         border-collapse: collapse;

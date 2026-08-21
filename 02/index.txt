@@ -93,7 +93,7 @@ akuli-note:
 pic:
     from: Akuli
     file: LED-Cathode-600x338.jpg
-    caption-append: The picture is from [here](https://circuitcrush.com/how-leds-work-intro/).
+    caption-append: This is a 1500 watt heater. The picture is from [here](https://circuitcrush.com/how-leds-work-intro/).
 
 <Akuli> (cathode is another name for the minus leg of the LED)
 <adder> So my flat spot is where the resistor is.
@@ -115,7 +115,7 @@ pic:
 
 ## Connecting alligator clips to batteries
 
-question: Akuli and adder try to connect cables to batteries for 24 minutes
+collapse: Akuli and adder try to connect cables to batteries for 24 minutes
     akuli-note:    
         This conversation doesn't look like 24 minutes, but it happened slowly while we both tried to set up stuff in our apartments.
 
@@ -246,7 +246,7 @@ akuli-note:
 ## Measuring voltages
 
 akuli-note:
-    Make sure you know [the important formula from the previous lesson](../01#the-important-formula).
+    Make sure you know [the important equation from the previous lesson](../01#the-important-equation).
 
 <Akuli> let's measure some voltages :)
 <Akuli> measure anything you can think of, and share results with me :)
@@ -507,7 +507,7 @@ question: Are ground of stuff interconnected all the way to literal ground?
     <Akuli> typically at each house, there is a wire buried into literal ground, and connected to the electricity system's ground
     <adder> I see.
 
-question: Ground fault protection
+collapse: Ground fault protection
     <Akuli> i'll tell you one more thing about this system's way to use ground
     <Akuli> it is a safety feature
     <Akuli> the metal cases of devices are connected to ground

@@ -452,7 +452,7 @@ question: I generally want black probe on minuses, and likewise, red on pluses?
 <Akuli> now you're adding two negative numbers :)
 
 
-## The important formula
+## The important equation
 
 <Akuli> so: V(A -> B) + V(B -> C) = V(A -> C)
 <Akuli> ok?

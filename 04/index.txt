@@ -1,0 +1,310 @@
+title: Resistance
+
+akuli-note:
+    To follow along, you need:
+
+    - The LED-and-resistor setup from [lesson 2](../02) (power supply, wire that fits inside power supply plug, alligator clip cables, 1kΩ resistor, LED)
+    - 1kΩ resistor (part of the lesson 2 setup)
+    - 10kΩ resistor
+    - A multimeter that can measure currents
+
+    TODO: picture
+
+
+## How to think about two-leg components
+
+akuli-note:
+    As explained [at the end of the previous lesson](../03#the-important-equation-of-currents),
+    whenever some current enters through one leg of a two-leg component, the same current exits out through the other leg.
+    Therefore we talk about just one current when discussing two-leg components.
+
+<Akuli> so, here's how to think about all 2-leg components in electronics: you connect some voltage to it, it consumes some current
+<Akuli> voltage is like an input, current is what it does when it receives that input
+<adder> OK.
+<Akuli> how exactly the current is determined depends on the component
+<Akuli> but all 2-leg components can be more or less described like this
+<adder> OK.
+<Akuli> as we learn about various 2-leg components, we will learn different possible relationships between voltage and current
+<Akuli> basically, different ways how the components decide how much current to consume
+<adder> OK.
+
+
+## What is resistance?
+
+<Akuli> the simplest possible is a resistor
+<Akuli> current is just a multiplication by a constant
+<Akuli> current = voltage * constant
+<Akuli> more voltage, more current linearly
+<Akuli> push 2 times harder --> electrons move 2 times faster through it
+<adder> OK.
+<Akuli> this seems very straight-forward, and exactly what you'd expect
+<Akuli> and indeed, it's very easy to make a resistor
+<Akuli> just take a chunk of any material whatsoever and hook up wires to it, most likely you made a resistor
+<adder> :)
+<Akuli> the resistance may be unusably big or unusably small :)
+<Akuli> but it is a resistor
+<Akuli> ok?
+<adder> OK.
+<Akuli> so, what exactly is resistance?
+<Akuli> it's actually the inverse of that constant
+<Akuli> current = voltage / resistance
+<Akuli> ok?
+<adder> Wait...
+<adder> V=IR
+<Akuli> yeah
+<adder> => I = V/R
+<Akuli> :)
+<adder> OK.
+<Akuli> so, more resistance means you get less current
+<Akuli> the naming should make sense
+<adder> OK.
+<Akuli> it is "resisting current flow"
+
+
+## Changing the resistor
+
+akuli-note:
+    At this point, adder had the LED-and-resistor setup from [lesson 2](../02).
+
+    If I understood correctly, adder used a red LED in lesson 2, green LED in [lesson 3](../03), and both in this lesson.
+
+<Akuli> let's see this in action
+<Akuli> swap out the 1kΩ resistor for some other resistor with a bigger resistance
+<Akuli> try 10kΩ for example
+<adder> Getting around 0.6mA on a 10kOhm, but I took a different LED (red, previously green).
+<adder> Makes sense.
+<Akuli> try with the same LED too
+<Akuli> it should be more dim now
+<adder> Yeah, sure, but around the same value.
+<Akuli> yeah
+<Akuli> current is about the same
+<adder> Yes.
+<Akuli> let's measure some voltages to see what's going on
+<Akuli> get rid of the current measuring for now (that is, revert back to how it was)
+<adder> Revert circuit?
+<Akuli> yes
+<Akuli> it's often much easier to measure voltages than currents, so that's what we usually do in electronics
+<Akuli> your measurements from last time were:
+<Akuli> Measured voltage 	Value
+<Akuli> Between the alligator clips 	7.7V
+<Akuli> Between LED legs 	1.85V
+<Akuli> Between resistor legs 	5.85V
+<Akuli> i'm curious to see how that changes with 10k instead of 1k
+<adder> Doesn;t change.
+<Akuli> yes!
+<Akuli> it should actually change a tiny bit
+<Akuli> voltage across LED legs should be slightly smaller with 10k than with 1k
+<adder> I measured 1.9V across LED.
+<Akuli> is this the green led?
+<adder> Yep.
+<Akuli> alright, so that's green with 1k?
+<Akuli> or 10k?
+<adder> 10k
+<Akuli> and with 1k?
+<adder> Well we measured it last time.
+<Akuli> the color affects this too, unfortunately :D
+<Akuli> different color LEDs consume a different voltage
+<Akuli> but anyway, it is always around 2 volts
+<Akuli> i think that's all we really care about
+<Akuli> ok?
+<adder> 2.077V
+<Akuli> there we go :D
+
+raw:
+    <table>
+        <tr>
+            <th>LED</th>
+            <th>Resistor</th>
+            <th>Measured current</th>
+            <th>LED voltage</th>
+            <th>Resistor voltage<br>(calculated for 7.7V power supply)</th>
+        </tr>
+        <tr>
+            <td>red</td>
+            <td>1kΩ</td>
+            <td>?</td>
+            <td>1.85V</td>
+            <td>5.85V</td>
+        </tr>
+        <tr>
+            <td>red</td>
+            <td>10kΩ</td>
+            <td>0.6mA</td>
+            <td>?</td>
+            <td>?</td>
+        </tr>
+        <tr>
+            <td>green</td>
+            <td>1kΩ</td>
+            <td>5.6mA</td>
+            <td>2.1V (meter: 2.077V)</td>
+            <td>5.6V</td>
+        </tr>
+        <tr>
+            <td>green</td>
+            <td>10kΩ</td>
+            <td>0.6mA</td>
+            <td>1.9V</td>
+            <td>5.8V</td>
+        </tr>
+    </table>
+
+<Akuli> so that tiny 0.1V change causes the LED to eat 10 times more current
+<Akuli> went from 0.6mA to 6mA or something like that
+<Akuli> ok?
+<adder> OK.
+<Akuli> (well, it's closer to 0.2V than 0.1V, but you get the idea)
+<adder> So it eats up more current with a smaller resistor?
+<adder> Obviously.
+<Akuli> yes
+
+
+## LED behavior for a given input voltage
+
+<Akuli> and the voltage consumed by LED raises, but by a surprisingly small amount
+<Akuli> it's not like with resistors, 10 times more current through LED doesn't mean 10 times bigger voltage over LED
+<Akuli> ok?
+<adder> OK.
+<Akuli> one way to look at this is that LEDs are very sensitive to the input voltage
+<Akuli> give LED a tiny bit more input voltage, current changes by crazy amount
+<Akuli> ok?
+<adder> OK.
+<adder> Diodes gonna diode.
+<Akuli> yeah :)
+<Akuli> the resistor basically smooths it all out
+<Akuli> it's linear, so it's easy to reason about
+<Akuli> ok?
+
+question: Chained resistors = sum(resistance)?
+    <adder> Chained resistors = sum(resistance)?
+    <Akuli> yes, but we'll get there later (also depends on how you chain them)
+    <adder> OK.
+
+    TODO: add explanation from "later"
+
+
+## Calculating the LED current
+
+<Akuli> so, let's have a look at how you would actually calculate what happens for some specific resistor value
+<Akuli> let's say 10kΩ, and let's say power supply puts out 7.7V as we've seen it do
+<Akuli> ok?
+<adder> OK.
+<Akuli> so the LED eats about 2V of that
+<Akuli> we don't know how much exactly until we work out the current
+<Akuli> so we have a bit of a chicken-and-egg problem here
+<adder> OK.
+<Akuli> but it doesn't matter really, because we know it's approximately 2V anyway
+<Akuli> so if we don't care for exact results and we just want something close enough, we can actually use the LED's behavior to our advantage
+<Akuli> ok?
+<adder> OK.
+
+example: adder's 7.7V power supply, 10kΩ resistor
+    <Akuli> so, resistor sees 5.7V
+    <Akuli> ok?
+    <adder> OK.
+    <Akuli> 5.7V and 10kΩ; what is the current?
+    <adder> V=IR
+    <adder> => I = V/R
+    <adder> <=> I = 5.7V/10kOhm
+    <adder> <=> ~ something small :)
+    <Akuli> yep
+    <Akuli> 5.7 / 10 = 0.57
+    <Akuli> ok?
+    <adder> OK.
+    <Akuli> 1/kilo = milli
+    <Akuli> so, 0.57 mA
+    <Akuli> ok?
+    <adder> OK.
+    <Akuli> what did you measure? :)
+    <adder> That.  :P
+    <Akuli> yeah :D
+    <Akuli> i think you measured 6mA, checks out :)
+    <adder> I couldn't get a stable reading so I rounded it up.
+    <Akuli> :DDDD
+    <Akuli> math is mathing :D
+    <adder> It's a very touchy business, measuring.
+
+example: adder's 7.7V power supply, 1kΩ resistor
+    <Akuli> now try calculating with 1k instead of 10k
+    <adder> I = V/R
+    <adder> I = 5.7V/1kOhm
+    <adder> 1/kilo = milli
+    <adder> 5.7mA
+    <Akuli> yep :)
+    <Akuli> trying to scroll back up to see what you measured
+    <adder> Around that much.
+    <Akuli> you measured 5.66mA :)
+
+<Akuli> here's something i want you to note about 1kΩ specifically: with 1kΩ,  volts = milliamps
+<adder> OK.
+
+example: 5V power supply, 1kΩ resistor
+    <Akuli> for example, how much current does an LED eat if connected to 5V with 1kΩ resistor? it's 3mA
+    <Akuli> LED eats 2V, resistor gets 3V, current is 3mA
+    <adder> :)
+    <Akuli> no need to mess around with V = IR to see that
+    <adder> OK.
+
+<adder> Notice how V=IR
+<adder> V=IR
+<adder> VIR
+<adder> IV/R
+<adder>  / comes to the place of I
+<adder> and it still looks like the original formula.
+<adder> :)
+<Akuli> :D
+
+
+## Choosing a resistor for an LED
+
+<Akuli> as another example, let's look at what i did in my guitar pedal with that 3-leg LED
+<Akuli> so i aimed for 10mA at 9V
+<Akuli> ok?
+<adder> OK.
+<Akuli> ...now you do the rest :)
+<Akuli> work out the correct resistor value
+<adder> There are two diodes, each eats up 2V, meaning 4V are missing, 9-4 = 5V, 10k?
+<Akuli> no, both lights are not on at the same time
+<adder> So 70k?
+<adder> No.
+<Akuli> 70k would make the LED very dim :)
+<Akuli> try what happens with 1k
+<Akuli> then tweak slightly if needed
+<Akuli> a switch selects which LED is on, but at any time, it's just one LED
+<adder> So 9-2 = 7V.
+<Akuli> yep, that's what the resistor sees
+<adder> V=IR
+<adder> R = V/I
+<adder> No.
+<adder> R = V/I
+<adder> V=IR
+<adder> I=V/R
+<Akuli> you actually want to solve the resistor R here
+<adder> 7V/1k = 7mA
+<Akuli> ahhh you're trying 1k, sure
+<adder> Meaning you need 10/7?
+<adder> Wtf.
+<Akuli> 1kΩ gives you 7mA, you want slightly more current
+<Akuli> so the correct resistance is slightly less than 1kΩ
+<adder> Meaning you need a SMALLER Resistor.
+<Akuli> yes!
+<Akuli> and not very much smaller
+<Akuli> the correct answer is surely between 500Ω and 1kΩ
+<adder> 700R?
+<Akuli> yeah!
+<Akuli> that's the correct answer
+<Akuli> actually, i used a 680Ω, since that's what i had
+<Akuli> but the math would say 700Ω for those specs
+
+question: How does Akuli's guitar pedal handle more than 9 volts?
+    <adder> So what happens once I connect up your guitar pedal to like 100000000000000000000000000V
+    <adder> You said it's going to work with >9V.
+    <Akuli> :D
+    <Akuli> i designed it to work with up to 14V
+    <adder> Ah.
+    <Akuli> 14V is the biggest i've ever measured from an unregulated power supply that claims to be 9V
+    <adder> Ah.
+    <adder> OK.
+    <Akuli> the pedal will probably work fine with slightly more
+
+<Akuli> so, now you know what resistance is, and how to calculate LED resistor value :)

@@ -1,0 +1,411 @@
+title: Current
+
+akuli-note:
+    To follow along, you need:
+
+    - 1kΩ resistor
+    - 10kΩ resistor
+    - A multimeter that can measure currents
+
+    TODO: picture
+
+
+## What is current?
+
+<Akuli> so, let's talk about what is current
+<Akuli> to reiterate, voltage is electricity wanting to go from place A to place B, but not necessarily going
+<Akuli> current is electrons actually moving somewhere
+<adder> Current is, how much charge did get through past the resistance?
+<Akuli> you don't necessarily need resistance to have current
+<Akuli> it's just how much charge (that is, electrons) is moving
+<adder> Sure.
+<adder> OK.
+<Akuli> a valid unit for current is electrons/second
+<Akuli> the problem with that unit is that it is really small
+<Akuli> like insanely small
+<Akuli> so, you would need huge numbers to describe anything meaningful
+<Akuli> ok?
+<adder> So we count it as Coloumbs?
+<Akuli> a coulomb is a big pile of electrons
+<Akuli> a very big pile
+<Akuli> so yes, we use coulombs/second
+<adder> OK.
+<Akuli> but in electronics, you don't usually say coulombs/second, you say amperes, which means the same thing
+<adder> OK.
+<Akuli> so, an ampere (abbreviated: A) is just a large number of electrons per second
+<Akuli> ok?
+<adder> OK.
+<Akuli> like we discussed with voltage, this is inverted for historical reasons
+<Akuli> so a positive amount of amperes from A to B actually means that electrons are traveling from B to A
+<Akuli> this will probably become clear when we go actually measure the circuit again
+<adder> OK.
+
+
+## Examples of currents
+
+<Akuli> but first, i want to give you some kind of idea about what to expect
+<Akuli> 1 ampere is a lot of current
+<Akuli> your entire device may use 1 ampere if it's doing a lot
+<Akuli> for example, a phone charger typically outputs just a few amps
+<adder> So, usually we work in mA?
+<Akuli> yeah
+<Akuli> today i bought one for charging my phone in my car, and i think it said 2.2A on it
+<Akuli> so if you're looking at an entire device, you may see a few amps
+<Akuli> if you're looking at an individual component, expect mA or uA
+<adder> OK.
+<Akuli> (u = micro, one thousandth of a milli)
+<Akuli> let's get even more concrete :)
+<Akuli> so phone charger, 2.2 A
+<Akuli> ok?
+<adder> OK.
+<Akuli> car engine starting: hundreds of amps for a short duration
+<Akuli> you really need a lot :D
+<Akuli> ok?
+<adder> OK.
+<Akuli> LED indicator light: somewhere between 1mA and 10mA, depending on type of LED and how bright you want the light to be
+<Akuli> ok?
+<adder> OK.
+<Akuli> (those are not hard limits)
+
+
+## Power supply specifications
+
+<Akuli> hmm, do i have more simple examples
+<Akuli> let's actually find out what your power supply promises to deliver
+<Akuli> unplug it from the wall and inspect it, there's a label that says what it's designed to output
+<adder> Oh no.
+<adder> Barely tucked it in.
+<adder> Is this necessary?
+<Akuli> not right now, but you will eventually want to know that when you run into it
+<Akuli> i can send a pic of mine
+<adder> Sure.
+
+pic:
+    file: 20260818_212030.jpg
+    from: Akuli
+
+<Akuli> PRI (primary) is basically input and SEC (secondary) is basically output
+<adder> OK.
+<Akuli> so this one promises to deliever 300mA
+<Akuli> this power supply is useful for a small device that doesn't need a lot of power
+<Akuli> but 300mA wouldn't be enough to charge a laptop
+<Akuli> laptop chargers usually say something like 3A or a bit more
+<adder> I see.
+<Akuli> voltage has to match too, of course
+<Akuli> you generally want a power supply that has the same voltage and enough amps (more is fine, it just won't provide as much as it could)
+<Akuli> ok?
+<adder> The same as what?
+<Akuli> the same as the device expects
+<adder> OK.
+<Akuli> for example, i can use this power supply with most guitar pedals, because guitar pedals are designed to take 9V power
+<Akuli> (ignoring the fact that this power supply puts out way more than 9V if you don't have any load connected...)
+
+question: Why does Akuli's "9V" power supply output more than 9 volts with no load?
+    <adder> How so?
+    <Akuli> why it outputs more than 9V with no load?
+    <adder> Yeah.
+    <Akuli> basically, the power supply is simple and dumb
+    <Akuli> the correct word is: unregulated
+    <Akuli> most power supplies adjust their output cleverly to hit a target voltage
+    <adder> I see.
+    <Akuli> this one does not, there's literally 6 parts inside the thing and no logic of any kind
+    <adder> :)
+    <Akuli> instead of "most", i should have said "most new"
+    <Akuli> this type of power supply used to be more common
+    <Akuli> digital devices don't like these, they like to assume the voltage is quite accurately what it should be
+    <adder> I see.
+    <Akuli> unregulated power supplies are also less efficient due to the simplistic design
+    <Akuli> so basically, for a number of reasons, you don't find these as much as you used to
+    <Akuli> ok?
+    <adder> OK.
+
+<Akuli> now, we actually talked about current there
+<Akuli> it's pretty much impossible to talk about electricity without talking about voltage and current
+<Akuli> when i say "load", i really mean that some current is taken from the power supply
+<Akuli> "no load" means current is zero
+<adder> OK.
+<Akuli> so even though current is today's topic, we have already discussed it before when we e.g. talked about measuring batteries
+<Akuli> ok?
+<adder> OK.
+
+
+## Measuring current
+
+akuli-note:
+    At this point, adder has the LED-and-resistor setup from [lesson 2](../02).
+
+<Akuli> enough talk, let's measure current :)
+<Akuli> the first caveat i'll add: current is NOT between two points like voltage
+<Akuli> current is THROUGH a thing, not between two things
+<Akuli> so when you measure current, you connect the multimeter so that the thing you're measuring goes through the multimeter
+<Akuli> it's more involved than just touching two points to read a voltage
+<Akuli> ok?
+<adder> OK.
+<Akuli> let's do exactly that
+<Akuli> disconnect the circuit at some point (doesn't matter where really)
+<adder> Inside of PS is probably the easiest.
+<Akuli> :DDDDDDDDD
+<adder> That's not what you meant?
+<Akuli> yeah, any point of the circuit you put together with alligator clips and such :)
+<Akuli> don't mess with the 230V AC input side :D
+<adder> OK, disconnected.
+<Akuli> now, put the meter in current mode
+<adder> A?  mA?  uA?
+<Akuli> select A if unsure
+<Akuli> you don't want to surprise the meter with too much current
+<adder> OK.
+<Akuli> in many meters, you would also need to change where the red probe is connected, in yours i think you don't need to
+<adder> Says V Ohm mA uA
+<adder> Where the red probe is right now.
+<Akuli> ah, so it's all the same in yours
+<Akuli> unusual, but i remembered it being like that :)
+<adder> OK.
+<Akuli> so, reconnect the circuit but so that the current travels through the meter
+<Akuli> that is, black probe and red probe to the two things that are no longer connected to each other
+<adder> Does the probe ordering matter?
+<Akuli> try it :)
+
+akuli-note:
+    At this point, adder has disconnected the red alligator clip from the LED's longer leg, and inserted the meter there.
+
+collapse: adder gets weird current readings because the multimeter probe is plugged to the wrong connector in the multimeter
+    <adder> Just the sign flips, but I'm also measuring a different figure.
+    <adder> 0.22A vs ~0.3A
+    <adder> One of those is negative.
+    <adder> Also, led doesn't glow.
+    <Akuli> something weird is going on
+    <Akuli> what point did you disconnect?
+    <adder> Long leg.
+    <adder> Of LED.
+    <Akuli> so everything else is still the same, led(short leg) -> resistor -> alligator --> power supply negative?
+    <adder> Yeah, looks so to me.
+    <Akuli> meter should go between power supply positive and LED long leg
+    <adder> Yeah.
+    <adder> What is weird?
+    <Akuli> LED should glow, and 0.22A is way too much
+    <Akuli> it should be more like 0.006A
+    <adder> Well, I don't know.  :)
+    <Akuli> hmm, walk me through the whole thing part by part, starting from the middle of the plug (power supply positive)
+    <adder> Wire from the inside to the gator -> gator -> LED long -> LED short -> resistor -> gator -> outside of PS.
+    <adder> But I reverted this as it wasn't working.
+    <adder> Otherwise there was a meter like you said in between.
+    <adder> LED now glows.
+    <Akuli> let's try again...
+    <Akuli> disconnect alligator from LED long leg, LED should turns off
+    <adder> OK.
+    <Akuli> connect that same alligator thing instead to one of the meter probes
+    <Akuli> then, touch the other probe to LED long leg
+    <Akuli> what happens?
+    <adder> 0.178A
+    <Akuli> and no LED glowing?
+    <adder> Nope.
+    <Akuli> your meter is doing something weird here
+    <Akuli> at least, that's my guess right now
+    <Akuli> try the mA setting of the meter
+    <adder> It's now showing 0.012A when I don't touch anything, just the one probe.
+    <Akuli> ahhhhh
+    <Akuli> i think you're touching something somewhere that you shouldn't
+    <adder> 5.6mA
+    <adder> LED works.
+    <Akuli> that's the reading :D
+    <adder> Touching it pretty much the same.
+    <Akuli> what exactly do you mean touching?
+
+<adder> Like I said, this "port" on multimeter isn't designated "A".
+<adder> Only "mA" and "uA".
+<adder> There is a separate port that says 10A max.
+<Akuli> ahhh yeah that's the one you should use with the "A" mode
+<Akuli> that's why the meter was confused
+<adder> >.>
+<Akuli> you have a different meter than i remember?
+<adder> Same meter we bought.
+<Akuli> then i'm not remembering it properly :)
+<Akuli> but yeah, now you're getting the correct reading
+<adder> Getting 0.006 on different port.
+<Akuli> 0.006A = 6mA
+<adder> Yeah.
+<Akuli> that's just the accuracy you're getting with that :)
+<Akuli> the "10A max" one is great if you don't know how much current you're going to have
+<adder> OK.
+<Akuli> you're unlikely to get 10A out of a power supply anyway, so meter is probably happy with it
+<Akuli> if you ever exceed the current, there's a fuse that you can replace and it will likely fix it
+<adder> I see.
+<Akuli> so there we go, 5.6mA :)
+<Akuli> try swapping the probes
+<Akuli> (now that we are getting good readings...)
+<adder> -0.005
+<Akuli> and in mA mode?
+<adder> But it takes a while to bump from 0.003
+<adder> No, in A mode.
+<Akuli> the A mode is really intended for bigger currents
+<Akuli> so it's probably all sorts of inaccurate at such "small" currents as a few mA
+<adder> 5.66
+<Akuli> should have minus sign
+<adder> Yeah.
+<Akuli> which way around are the probes now?
+<Akuli> which probe points towards power supply positive?
+<adder> Red probe touching long leg.
+<Akuli> yeah
+
+raw:
+    <table>
+        <tr>
+            <th>Red probe</th>
+            <th>Black probe</th>
+            <th>Measured current</th>
+        </tr>
+        <tr>
+            <td>red alligator clip cable<br>(power supply positive)</td>
+            <td>longer leg (plus leg) of LED</td>
+            <td>5.6mA</td>
+        </tr>
+        <tr>
+            <td>longer leg (plus leg) of LED</td>
+            <td>red alligator clip cable<br>(power supply positive)</td>
+            <td>-5.6mA</td>
+        </tr>
+    </table>
+
+
+## Direction of current
+
+<Akuli> so current comes from power supply positive, goes in through the black probe, out through the red probe, into LED and resistor and back to power supply
+<Akuli> this is what the meter calls negative current
+<Akuli> positive is in through the red, out through the black
+<Akuli> ok?
+<adder> OK.
+<Akuli> as with voltage, the actual movement of electrons is the opposite
+<adder> Gonna take a while while I clear out this in my head.
+<Akuli> :)
+<adder> It's super confusing right now.
+<adder> Got + -, red black, etc.
+<Akuli> black is always -
+<Akuli> red is always +
+<Akuli> meter shows current as going from +(red) probe to -(black) probe
+<Akuli> power supply wants current to flow from its + to -
+<Akuli> does this maybe clarify the conventions?
+<adder> Nope, sorry.  :)
+<Akuli> alright :)
+<Akuli> then it'll just take some time getting used to it all :)
+<adder> Yeah.
+<Akuli> but basically, the multimeter in this mode is just an electron counter
+<Akuli> it counts how many electrons are going from black wire to red wire
+<Akuli> while disturbing the circuit as little as possible as it does so
+<Akuli> ok?
+<adder> OK.
+
+
+## LED current for standard LEDs
+
+<Akuli> so, now you have an idea of what 6mA through an LED looks like
+<Akuli> this depends on the LED
+<Akuli> some LEDs are brighter than others at the same current
+<Akuli> ok?
+<adder> OK.
+<Akuli> standard LEDs similar to the ones you have are usually designed to handle about 20mA without issues
+<Akuli> and for an indicator light you usually need 10mA or less
+<adder> OK.
+
+
+## LED current from datasheet
+
+<Akuli> for different types of LEDs, you can usually download a datasheet from the website where you buy the LEDs
+<Akuli> and the datasheet says how much it can handle
+<adder> OK.
+<Akuli> here's an example of a datasheet of an LED i used in a project:
+
+datasheet:
+    file: 339-1SURSYGW.pdf
+    from: Akuli
+
+<Akuli> this is a 3-leg LED that can emit red or green light based on which legs you connect
+<adder> I see.
+<Akuli> i used it to show not only whether the device is on, but whether it's in a mode i called "go brrr"
+<adder> Looks pretty Greek right now.
+<Akuli> :)
+<Akuli> let me explain how to find out the important stuff from here :)
+<Akuli> for this 3-leg LED, you probably want to first know what each legs does
+<Akuli> there's basically 2 LEDs inside it, but not 4 legs like you may expect
+<Akuli> so you want to find out how that is
+<Akuli> ok?
+<adder> OK.
+<Akuli> in the picture on the first page, there's a diagram on the bottom right
+<Akuli> each --->|--- symbol is an LED
+<Akuli> (that's actually the symbol of a diode)
+<adder> OK.
+<Akuli> it looks like an arrow, and that arrow is the direction of current needed to make the LED show light
+<Akuli> why are they labeled SYG and SUR, i don't know
+<Akuli> i'd expect RED and GREEN or similar
+<adder> :)
+<Akuli> but anyway, one of those is the red, the other is the green
+<Akuli> so to power on the LED, you would feed in plus from either outside leg (depending on which color you want), and minus from middle leg
+<Akuli> then current would flow in through either outside leg, and out the middle leg, just like it wants
+<Akuli> you also need a resistor
+<Akuli> ok?
+<adder> OK/
+<adder> OK.
+<Akuli> so, how much current?
+<Akuli> that's the only other detail you will likely need to dig out of the datasheet
+<Akuli> scroll down to second page
+<Akuli> "Absolute Maximum Ratings at TA = 25 C"
+<Akuli> absolute maximum means, do not exceed this under any circumstance or the device may break
+<adder> I see.
+<Akuli> usually you want to stay a little bit away from absolute maximums
+<adder> I see.
+<Akuli> and what's the first thing the table says? forward current :)
+<Akuli> forward current, as in current in the direction needed to light the LED
+<adder> OK.
+<Akuli> reverse current would be current in the opposite direction
+<Akuli> so absolute maximum is 25mA
+<Akuli> in my project, i wired the LED so that it gets about 10mA if the power supply is exactly 9V
+<Akuli> i designed the project to work with "9V" supplies, including those that output more than 9V
+<adder> I see.
+<Akuli> so even if the power supply outputs more voltage, the LED will be fine
+<Akuli> and 10mA is plenty to see it
+<adder> Is this something tweaked by a resistor?
+<Akuli> yes!
+<Akuli> let's talk about that :)
+<Akuli> or do you want to keep a short break?
+<Akuli> this might be a good time for a break
+<adder> Nope, we're good.
+<Akuli> alright :)
+
+akuli-note:
+    See [the next lesson (resistance)](../04) for tweaking a resistor to get the desired LED current.
+
+
+## The important equation of currents
+
+<Akuli> i'll mention one more fact about currents that is kinda important here
+<Akuli> the important equation for voltages i presented was: V(A -> B) + V(B -> C) = V(A -> C)
+
+akuli-note:
+    I explained the "important equation of voltages" [in the first lesson](../01#the-important-equation).
+
+<Akuli> there's a similarly important thing for currents
+<Akuli> it goes like this:   sum(currents in) = sum(currents out)
+<Akuli> ok?
+<Akuli> (i'll explain what this says shortly)
+<adder> OK.
+<Akuli> this basically says that electrons don't appear or disappear
+<Akuli> this is usually presented for intersections of wires, but it actually applies much more broadly than that
+<adder> OK.
+<Akuli> almost any component you can think of satisfies this, if you consider the currents through all of its legs
+<Akuli> resistors, LEDs, capacitors, IC chips (e.g. the 555 timer), a whole computer, anything really
+<adder> OK.
+<Akuli> the only exception i know is devices that literally shoot electrons
+<Akuli> like the CRT tube of an old tv or computer monitor
+<adder> OK.
+<Akuli> so if you're not messing around with anything like that, this equation holds for any component :)
+<Akuli> that's why, in the case of 2-leg components, we talk about just one current
+<adder> OK.
+<Akuli> whatever goes in through one leg must come out through the other leg
+<Akuli> the same current
+<adder> OK.
+<adder> This is what law?
+<Akuli> good question
+<Akuli> for intersections of wires, this is kirchhoff's current law
+<adder> OK.
+<Akuli> in my mind, the more general version that applies to anything other than electron shooting devices and such, is just common sense
+<Akuli> if you understand what current is, it should seem obvious
+<adder> OK.

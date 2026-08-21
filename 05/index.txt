@@ -1,0 +1,401 @@
+title: Power
+
+<adder> Is power lesson mostly theoretical?
+<Akuli> unfortunately yes
+<adder> You busy/tired now?
+<Akuli> hmm not really
+<Akuli> the reason why power lesson will be theorethical is, there's no good way to measure power
+<Akuli> power meters exist, but they measure the power of an entire device or circuit, not really component by component
+<adder> I'm in bed, physically fatigued to sit at the table, but with enough cognitive capacity to take in some more knowledge.  :)
+<Akuli> :D
+<Akuli> we could talk a bit about power :)
+<adder> Energy per time unit.
+<Akuli> yeah
+<Akuli> the first thing i'll say, prioritize your knowledge on voltage and current
+<Akuli> those are the two main things you mess around with in electronics
+<adder> OK.
+<Akuli> with that said, let's talk about power
+<adder> So, do we only care practically about the cost (of electricity consumed)?
+<adder> Not quite.
+<adder> How quickly we deplete the energy source?
+<Akuli> cost is certainly one reason why you might care about power consumption
+<adder> Heating possibly.
+
+
+## Akuli's bad introduction
+
+<Akuli> so, power is measured in watts
+<Akuli> i'll give you some idea of how big is one watt
+<Akuli> resistors like yours are rated for 1/4 watt
+<adder> What does this mean in practice?
+<Akuli> hmmm this is a bad start for a lesson, i'm realizing i should first explain why things heat up and why you care anyway...
+<Akuli> let's snip away a bit of that :)
+<adder> OK.
+
+
+## Phone charger: amps seem to appear out of nowhere
+
+<Akuli> a better introduction might be amps in house wiring
+<Akuli> so my usb charger can output 2.2A
+<Akuli> and most breakers in my apartment are 10A
+<Akuli> meaning, if i plug devices to wall that in total consume more than 10A, they cut off the power
+<Akuli> ok?
+<adder> OK.
+<Akuli> so if i plug in 5 usb chargers, and i charge 5 phones, does that trip the breakers?
+<Akuli> the answer should obviously be no
+<Akuli> phone chargers feel somehow small, even though they output a lot of amps
+<Akuli> ok?
+<adder> OK, but ain't 5*2.2 > 10?
+<Akuli> yeah, you would think it trips the breaker
+<Akuli> but in reality it wouldn't
+<Akuli> as a user, i would be very surprised if i couldn't charge 5 phones at once
+<Akuli> (using different chargers)
+<Akuli> so, what's going on here?
+<adder> OK, but in theory, it's supposed to add up to >10 and thus trip the breaker?
+<Akuli> you're right that something funny is going on
+<Akuli> here's what's happening
+<Akuli> even though a phone USB charger outputs several amps, it takes in less than 0.1 amps
+<Akuli> the voltage is wildly different though: 230V AC in, 5V DC out
+<Akuli> (usb is 5V, unless some fancy USB-C stuff negociates a higher voltage; we can come back to that soon)
+<adder> OK, so here's what's bugging me.
+<adder> How could it create more current out of thin air?
+<Akuli> that's a great question :)
+<adder> As in, it takes in 0.1A, and outputs 2.2A?
+<Akuli> right
+
+
+## Conservation of energy
+
+<Akuli> there is no physics law that says that current cannot appear out of thin air
+<Akuli> i'll explain the exact process in a moment
+<Akuli> however, there is a well-known physics law that says energy cannot appear out of thin air
+<Akuli> ok?
+<adder> OK.
+<Akuli> in electronics, we don't usually talk about energy, we talk about power
+<Akuli> the difference is that power is energy per second
+<Akuli> so power means that energy is moving, just like current means that electrons are moving
+<adder> OK.
+<Akuli> a good example might be a heater
+<Akuli> let's say you have a 1kW heater
+<Akuli> W = watt = power unit
+<adder> OK.
+<Akuli> this means that every second it takes in 1000 joules of electrical energy and produces 1000 joules of heat
+<Akuli> joule is the unit of energy
+<Akuli> ok?
+<adder> OK.
+<Akuli> this is not at all an insane amount of energy for something that's supposed to help heat up a room
+<Akuli> s/energy/power/
+<Akuli> maybe i should look up some heaters to confirm
+<Akuli> a random heater i found online:
+
+pic:
+    from: Akuli
+    file: heater.jpg
+    caption-append: The picture is from [here](https://www.biltema.fi/rakentaminen/lvi/lammitys/lampopatterit/oljylammittimet/oljytaytteinen-lampopatteri-1500-w-2000051695).
+    max-width: 50%
+
+<Akuli> this one is 1.5 kW
+<Akuli> ok?
+<adder> OK.
+<Akuli> so, if a device takes in 1000W of electrical power, it cannot output 2000W of power in any form, electrical or otherwise
+<Akuli> i mean, it could do that for a moment if it stores some power inside it
+<Akuli> but not continuously
+<adder> OK.
+<Akuli> so that's how the physics law about energy translates to power
+<Akuli> you can accumulate energy and release a powerful burst of it, but continuously, input power >= output power
+<Akuli> ok?
+<adder> OK.
+
+
+## Current of 1.5kW heater
+
+<Akuli> in most circuits, most of the power becomes heat
+<Akuli> after all, what do you do, make electrons wiggle around between atoms of your resistors :)
+<adder> OK.
+<Akuli> so, let's calculate how many amps of 5V power would be needed for that heater, if it ran on 5V
+<Akuli> the formula is:  power = voltage * current
+<Akuli> 1.5kW = 5V * current
+<Akuli> ok?
+<adder> OK.
+<Akuli> the current is.... 300 amps!
+<adder> :>
+<adder> Meaning if we want a reasonable current, we need to increase the push.
+<Akuli> yes!
+<Akuli> let's try a 230V power supply (that is, your wall; glossing over AC vs DC details for now)
+<Akuli> 1.5kW = 230V * current
+<Akuli> ok?
+<adder> OK.
+<Akuli> the current is 6.521739130 A
+<Akuli> so this thing by itself won't trip your 10A breaker, but two of these would
+<Akuli> ok?
+<adder> I see.
+<Akuli> we can learn a couple things from here
+<Akuli> first, heating big things takes up a huge amount of power
+<Akuli> this thing is for heating a room
+<Akuli> that's wildly different from a little LED and resistor setup
+<Akuli> ok?
+<adder> OK.
+
+
+## Why high voltages are used
+
+<Akuli> second, for big power it's convenient to use a big voltage
+<Akuli> let's say you're using a long extension chord, and it has 0.1 ohms of resistance
+<adder> Is this why energy is transferred along power lines at high voltage?
+<Akuli> yes!
+<Akuli> let's look at the long extension chord example
+<Akuli> i could actually measure an extension chord
+<Akuli> hmm, too small for my meter to read it
+<Akuli> so we'll have to imagine a super crappy/long extension chord
+<Akuli> ok?
+<adder> OK.
+<Akuli> let's say you put 6A through a line with 0.1Ω resistance
+<Akuli> the wire itself eats 0.6 volts
+<Akuli> if your whole supply is 5V, that's horrible news
+<Akuli> if your whole supply is 230V, you really don't care that much
+<Akuli> ok?
+<adder> OK.
+<Akuli> also, if your supply was 5V, you would need 300 amps, not 6 amps, so this situation would be way worse...
+<Akuli> ok?
+<adder> OK.
+<Akuli> so, wire thickness and material and such matter much less at higher voltages
+<Akuli> this is of course a tradeoff, high voltages are more dangerous and they tend to jump from one cable to another cable next to it
+<Akuli> but that is a worthy tradeoff if you need a lot of power
+<Akuli> ok?
+<adder> OK.
+
+
+## Phone charger explained
+
+<Akuli> so, let's look at a phone charger with power in mind
+<Akuli> output power needed: 5V * 2.2A = 11W
+<Akuli> ok?
+<adder> OK.
+<Akuli> input power needed: 230V * ??? = 12W
+<Akuli> i bumped 11W to 12W, because inevitably some energy will become heat
+<adder> Yeah.
+<Akuli> phone chargers do heat up, though not by that much
+<Akuli> solving that gives 52.17 mA
+<Akuli> so, the phone charger really doesn't need that much current, if it's fed from a high voltage and it can do a good job converting
+<Akuli> ok?
+<adder> OK.
+<Akuli> now, how does the conversion work?
+<adder> :)
+<Akuli> the trick is to convert the energy to something else than electrical energy
+<Akuli> in phone charger, magnetic energy
+<Akuli> physics people know that changing the magnetism of a chunk of iron requires energy
+<adder> Why is magnetic more convenient?
+<adder> Why can't we just amp this up?
+<Akuli> well, let's look at other options
+<adder> Why the intermediate step?
+<Akuli> you could try a resistor
+<Akuli> but a resistor can't really create more amps
+<Akuli> it's a 2-leg component, the amps you feed in come out the other side unchanged
+<adder> DIODE
+<Akuli> as far as heating is concerned, a diode behaves just like a resistor (we'll get to this in a moment)
+<adder> We talking about phone chargers?
+<Akuli> yes
+<Akuli> in general, the components you are familiar with aren't good at making more amps
+<Akuli> but magnetism physics is
+<adder> OK.
+<Akuli> typically you use either a transformer (older, unregulated power supplies) or an inductor (newer, switching-regulated power supplies)
+<Akuli> but either way, it's magnetism
+<adder> OK.
+<Akuli> this isn't the only option
+<Akuli> you could, for example, use a 230V motor to spin a 5V generator
+<Akuli> but motors and generators use... magnetism
+<Akuli> so you would have a louder, less efficient, overall crappier way to get the same result
+<Akuli> ok?
+<adder> OK.
+<Akuli> you could shine light at a sunpanel
+<Akuli> but those are quite inefficient
+<Akuli> so much of the energy would be wasted as heat
+<Akuli> ok?
+<adder> OK.
+<Akuli> so a transformer or an inductor is really the way to go here
+<Akuli> if you do things right, you can reach pretty nice efficiencies, 90% is not at all unreasonable
+<Akuli> ok?
+<adder> OK, doesn't matter for now, we have a black box that amps up from small current to adequate current.
+<Akuli> yes! :)
+<Akuli> with that attitude, you can do a lot of electronics
+
+
+## Power consumed by components
+
+<Akuli> so, let's talk about what happens to energy after it comes out of the power supply and it's sprinkled over our components
+<Akuli> ok?
+<adder> OK.
+<Akuli> the way this works varies a lot component to component
+<Akuli> but i'd say there's two kinds: components that generate heat, and a few special cases
+<Akuli> a capacitor would fall under those special cases, a perfectly working capacitor produces no heat at all (we'll talk about that later)
+<adder> OK.
+<Akuli> the same goes for a perfectly working inductor or transformer (as we just discussed...)
+<Akuli> but most other things (LEDs, diodes, resistors, transistors) just make heat in various ways
+<Akuli> ok?
+<adder> OK.
+<Akuli> for simplicity, i'll focus on two-leg components
+<Akuli> a typical two-leg component (e.g. resistor, diode) makes heat like this:  power = voltage * current
+<Akuli> that is, the same formula that goes for power supplies
+<adder> OK.
+<Akuli> so 5V into a 1kΩ resistor consumes 5mA of current, and the power would be 5V * 5mA = 25mW
+<Akuli> ok?
+<adder> OK.
+<Akuli> this is one thing you may run into if you try to set up a resistor for an LED but your supply voltage is high
+<Akuli> for example, let's say you have a 24V power supply, and you want a simple "power on" indicator LED at 10mA
+<Akuli> ok?
+<adder> OK.
+<Akuli> led consumes 2V (power = 10mA*2V = 20mW = tiny)
+<Akuli> ok?
+<adder> OK.
+<Akuli> resistor gets 22V:  power = 22V * 10mA = 220mW
+<Akuli> the most common type of resistors (like the ones you have) are made to handle 250mW
+<Akuli> so you're kinda close to the limit here
+<Akuli> it will be fine, but you can see that this could be a problem
+
+
+## Overheating components
+
+<adder> What happens on >250mW?
+<Akuli> good question
+<Akuli> for components that heat up like resistors, the story is roughly the same
+<Akuli> if you apply too much power for a short duration, nothing happens
+<Akuli> however, things may break for other reasons; check datasheet if it's not just a simple resistor
+<Akuli> ok?
+<adder> OK.
+<Akuli> if you apply too much power continuously, it may start smoking, and if you have way too much power, it may catch on fire
+<Akuli> i've gotten resistors to smoke in the past, but never fire
+<adder> :>
+<Akuli> surprisingly enough, my resistors still measured ok after a moment of smoking, even though they were dark colored
+<adder> lol
+<Akuli> people who repair electronics often find burnt resistors (and other components), they rarely catch on fire but often get dark etc
+<adder> I see.
+<Akuli> it's often so that one component fails, and then another component gets more voltage than it should, hence more power
+<adder> Cascading failures.
+<Akuli> :)
+
+
+## How to avoid overheating
+
+<Akuli> so, what if you need more than 250mW?
+<Akuli> you can buy bigger resistors
+<Akuli> there's e.g. 0.5W, 1W, 2W, 10W resistors
+<Akuli> they are physically bigger, because they need more area to get the heat out
+<adder> OK.
+<Akuli> you can attach a heat sink (mostly a thing for transistors and such, also power resistors)
+<Akuli> a heat sink is a chunk of metal (usually aluminum) whose job is to distribute the heat around
+<Akuli> so instead of one spot that reaches a high temperature, everything will be slightly warmer
+<adder> I see.
+<Akuli> trying to look for some reasonable picture of a relatively big audio amplifier
+
+pic:
+    from: Akuli
+    file: audio-amp-thumbnail.jpg
+    caption-append: The picture is the thumbnail of [this YouTube video](https://www.youtube.com/watch?v=2Kq3x9TACcY).
+
+<Akuli> on the left and right, you see big heat sinks
+<Akuli> you also see some transistors attached onto them
+<adder> Yeah, I know what's a heat sink.  Had it on my pi's.
+<Akuli> yes :)
+<Akuli> obviously there's other ways, like water cooling, but those are rarely used outside computers
+<adder> OK.  :)
+
+
+## Power of resistor: convenient equations
+
+<Akuli> i'll finish with a couple convenience things
+<Akuli> so the basic formula for power is power=voltage*current, and that works for more than resistors even though people usually present it as being only for resistors
+<Akuli> basically any component that isn't clever about temperature management, or somehow special like capacitor, behaves that way
+<Akuli> ok?
+<adder> OK.
+<Akuli> for resistors specifically, here are some convenient formulas:
+<Akuli> P = V^2 / R
+<Akuli> P = R I^2
+<Akuli> where V is voltage, R is resistance, I is current
+<Akuli> ok?
+<adder> OK.
+<Akuli> the first one is just P = VI, but replace I with V/R as you know
+<Akuli> the second one is also P = VI, but replace V with RI
+<Akuli> ok?
+<adder> OK.
+<Akuli> this is useful if you don't want to work out the voltage or current
+
+example: Maximum current of Akuli's 0.1Ω 0.5W current measuring resistors
+    <Akuli> for example, i have some 0.1Ω 0.5W resistors
+    <Akuli> i bought them for measuring currents
+    <Akuli> that is, i pass some current through the resistor and i measure its voltage to get an idea of how big the current is
+    <Akuli> ok?
+    <adder> OK.
+    <Akuli> what's the maximum current that can be measured this way?
+    <Akuli> (hint: pick a formula that doesn't involve the voltage, since you don't really care)
+    <adder> P/R?
+    <Akuli> almost
+    <adder> sqrt(P/R)
+    <Akuli> yeah :)
+    <Akuli> so, what's the current? :)
+    <adder> 5A?
+    <Akuli> almost
+    <Akuli> sqrt(5) A
+    <adder> lol
+    <Akuli> so, 2.23 amps
+    <Akuli> plenty for most things i want to measure
+    <Akuli> ok?
+    <adder> Hate that I needed to fire up a Python shell to compute 0.5/0.1.
+    <Akuli> :D
+
+example: Maximum voltage of standard 1kΩ 0.25W resistor
+    <Akuli> let's do another example
+    <Akuli> how much voltage can your 1kΩ resistors handle?
+    <Akuli> (hint: pick a formula without current)
+    <adder> Are we lacking info?  P?
+    <Akuli> your resistors are 0.25 watt
+    <adder> Ah.
+    <Akuli> that's the standard small resistors
+    <adder> 0.25W * 1000
+    <adder> 250V?
+    <Akuli> 250 watts is a lot
+    <Akuli> 6 of those and you have the heater i linked :DDD
+    <Akuli> ehhh sorry
+    <Akuli> i asked about voltage, nevermind
+    <adder> :>
+    <Akuli> the answer is sqrt(250) volts
+    <adder> Oh fuck me
+    <adder> whoops
+    <Akuli> :D
+    <Akuli> so, 15.8 volts
+    <adder> I see.
+    <Akuli> can't use those for that LED indicator light on 24V power supply
+    <adder> :)
+    <Akuli> must pick higher resistance to get less current
+
+
+## Combining multiple resistors to handle more power
+
+<Akuli> or, here's a trick that is sometimes useful: combine multiple different resistors, either in series or in parallel
+<Akuli> we haven't talked about this yet, but three 1Ω resistors connected to each other correctly is same as one 1/3 Ω resistor
+<Akuli> ok?
+<adder> Why would chaining up resistors decrease the total resistance?
+<Akuli> depends on how you connect them
+<Akuli> if you do:  ----resistor1---resistor2---resistor3----
+<Akuli> then resistances are added
+<Akuli> and you would get 3Ω
+<adder> Aaah I see.
+<Akuli> if you do:
+<Akuli>    ,---resistor1---.
+<Akuli>    |               |
+<Akuli> ---o---resistor2---o----
+<Akuli>    |               | 
+<Akuli>    `---resistor3---'
+<Akuli> then you get 1/3 ohms
+<adder> Right.
+<Akuli> i used this exact setup in my stereo amplifier build
+<Akuli> in a traditional audio amplifier, you have two output transistors for each speaker
+<adder> Cool.
+<Akuli> one output transistor increases the speaker's voltage ("pull up"), another to decrease it ("pull down")
+<Akuli> inserting a few 0.33Ω resistors makes it easier to tweak those transistors to basically behave nicely when the amplifier is idle
+<Akuli> the point is, i needed 0.33Ω resistors, and all the output going to speakers would go through them
+<adder> I see.
+<Akuli> so by chaining some 1Ω resistors i had, i "made" 0.75W 1/3 Ω resistors
+<adder> :)
+<Akuli> so that sort of tricks can be used to work around power issues, if you don't want to buy the right thing
+<Akuli> i think that's all you need to know about power :)
+<adder> OK.  :)
