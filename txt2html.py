@@ -95,25 +95,13 @@ def convert_block(lines):
                 print(lines[i][4:] if len(lines[i]) >= 4 else "")
                 i += 1
 
-        elif line.strip().startswith("- "):
+        elif line.startswith("- "):
             print("<ul>")
-            list_indent = len(line) - len(line.lstrip())
-            list_prefix = "    "
-            print(f"{list_prefix}<li>{line.strip()[2:].strip()}</li>")
-            blank_lines = 0
-            while i < len(lines):
-                if not lines[i].strip():
-                    blank_lines += 1
-                    i += 1
-                    continue
-                current_indent = len(lines[i]) - len(lines[i].lstrip())
-                if current_indent != list_indent or not lines[i].strip().startswith("- "):
-                    break
-                print(f"{list_prefix}<li>{lines[i].strip()[2:].strip()}</li>")
+            print(f"<li>{parse_inline(line[2:])}</li>")
+            while i < len(lines) and lines[i].startswith("- "):
+                print(f"<li>{parse_inline(lines[i][2:])}</li>")
                 i += 1
             print("</ul>")
-            for _ in range(blank_lines):
-                print("")
 
         # IRC Chat Messages
         elif line.startswith("<"):
