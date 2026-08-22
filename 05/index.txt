@@ -175,6 +175,14 @@ pic:
 <adder> Yeah.
 <Akuli> phone chargers do heat up, though not by that much
 <Akuli> solving that gives 52.17 mA
+
+akuli-note:
+    The current consumed by a 2.2A phone charger
+    can be a few times larger than this calculation would suggest, perhaps 0.1A or even 0.15A.
+    This has to do with the 230V input being AC instead of DC.
+    Look up "power factor" if you want to learn more about this.
+    I won't go into more detail here, because we will mostly work with DC.
+
 <Akuli> so, the phone charger really doesn't need that much current, if it's fed from a high voltage and it can do a good job converting
 <Akuli> ok?
 <adder> OK.
