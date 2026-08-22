@@ -2,6 +2,7 @@
 
 import glob
 import html
+import os
 import re
 import sys
 
@@ -235,6 +236,32 @@ def main():
         border-bottom: 2px solid #eaeaea;
         padding-bottom: 10px;
     }
+    .site-nav {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px 16px;
+        margin: -2px 0 28px;
+        padding: 10px 14px;
+        font-size: 0.95em;
+        background: #f1f6fb;
+        border: 1px solid #d6e2ee;
+        border-radius: 6px;
+    }
+    .site-nav a {
+        display: inline-block;
+        padding: 4px 10px;
+        color: #0d6efd;
+        font-weight: normal;
+        text-decoration: none;
+        background: #fff;
+        border: 1px solid #c7d7e6;
+        border-radius: 4px;
+    }
+    .site-nav a:hover {
+        background: #e8f1f9;
+        text-decoration: underline;
+    }
     h2 {
         margin-top: 40px;
         color: #111;
@@ -345,6 +372,32 @@ def main():
 <body>
     <h1>{html.escape(title)}</h1>
     """)
+
+    current_folder = os.path.basename(os.getcwd())
+    root_prefix = ".." if re.fullmatch(r"[0-9][0-9]", current_folder) else "."
+    lesson_folders = sorted(
+        (os.path.basename(path) for path in glob.glob(f"{root_prefix}/[0-9][0-9]")),
+        key=int,
+    )
+    if current_folder in lesson_folders:
+        lesson_index = lesson_folders.index(current_folder)
+        previous_link = ""
+        next_link = ""
+        if lesson_index > 0:
+            previous_folder = lesson_folders[lesson_index - 1]
+            with open(f"{root_prefix}/{previous_folder}/index.txt", "r") as file:
+                previous_title = file.readline().replace("title:", "", 1).strip()
+            previous_link = f'<a href="../{previous_folder}">Previous: {html.escape(previous_title)}</a>'
+        if lesson_index + 1 < len(lesson_folders):
+            next_folder = lesson_folders[lesson_index + 1]
+            with open(f"{root_prefix}/{next_folder}/index.txt", "r") as file:
+                next_title = file.readline().replace("title:", "", 1).strip()
+            next_link = f'<a href="../{next_folder}">Next: {html.escape(next_title)}</a>'
+        print(f'''<nav class="site-nav" aria-label="Lesson navigation">
+    <a href="..">Lesson index</a>
+    {previous_link}
+    {next_link}
+</nav>''')
 
     convert_block(lines)
 
