@@ -19,14 +19,14 @@ def parse_inline(text):
     return re.sub(r"\*\*(.*?)\*\*", r"<strong>\1</strong>", text)
 
 
-def read_indented_block(lines, start):
+def read_indented_block(lines, i):
     block = []
-    while start < len(lines) and (lines[start].startswith("    ") or not lines[start].strip()):
-        block.append(lines[start][4:] if len(lines[start]) >= 4 else "")
-        start += 1
+    while i < len(lines) and (lines[i].startswith("    ") or not lines[i].strip()):
+        block.append(lines[i][4:])
+        i += 1
     while block and not block[-1].strip():
         block.pop()
-    return block, start
+    return block, i
 
 
 def convert_block(lines):
@@ -116,6 +116,7 @@ def convert_block(lines):
             for raw_line in raw_lines:
                 print(raw_line)
 
+        # Lists
         elif line.startswith("- "):
             print("<ul>")
             print(f"<li>{parse_inline(line[2:])}</li>")

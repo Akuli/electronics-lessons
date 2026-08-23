@@ -34,6 +34,6 @@ The most important files are:
 All `.html` files are generated from the corresponding `.txt` files.
 They should not be committed to git, and they will be overwritten by the next build.
 
-Each `.html` file is self-contained.
+Each `.html` file is somewhat self-contained.
 For example, all CSS is baked in, not distributed as a separate `.css` file.
 This makes the `.html` files slightly bigger, but also easier to reason about.

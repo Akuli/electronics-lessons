@@ -3,6 +3,10 @@
 
 set -euo pipefail
 
+# Build, so that you won't get confused by comparing old build results
+./build.sh
+echo ""
+
 BASE_URL="https://akuli.github.io/electronics-lessons"
 
 # ANSI color codes
