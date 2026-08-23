@@ -1,10 +1,15 @@
 # Initial version vibe coded
 
+import os
 import glob
 import html
-import os
 import re
 import sys
+
+
+def read_title(filename):
+    with open(filename, "r") as file:
+        return file.readline().replace("title:", "", 1).strip()
 
 
 def parse_inline(text):
@@ -12,7 +17,6 @@ def parse_inline(text):
     text = html.escape(text)
     text = re.sub(r"\[([^\[\]]+)\]\(([^()]+)\)", (lambda m: f"<a href='{m.group(2)}'>{m.group(1)}</a>"), text)
     return re.sub(r"\*\*(.*?)\*\*", r"<strong>\1</strong>", text)
-
 
 def convert_block(lines):
     """Recursively process blocks (notes, questions, pictures, raw, chat lines)."""
@@ -195,9 +199,7 @@ def convert_block(lines):
         elif line.strip() == "lesson-list":
             print("<ol>")
             for subfolder in sorted(glob.glob("[0-9][0-9]"), key=int):
-                with open(f"{subfolder}/index.txt", "r") as file:
-                    title = file.readline().replace("title:", "", 1).strip()
-                print(f'<li><a href="{subfolder}" class="lesson-list-link">{html.escape(title)}</a></li>')
+                print(f'<li><a href="{subfolder}" class="lesson-list-link">{html.escape(read_title(subfolder + "/index.txt"))}</a></li>')
             print("</ol>")
 
         # Paragraph text
@@ -344,16 +346,23 @@ def main():
                 try {
                     const url = new URL(a.href, window.location.href);
 
-                    // Regex checks if the pathname ends with a 2-digit segment 
+                    // Regex checks if the pathname ends with a 2-digit segment
                     // e.g., matches "/01" or ".../12", but not "/123" or "/page01"
                     if (/(?:^|\/)[0-9][0-9]$/.test(url.pathname)) {
                         url.pathname += "/index.html";
-                        const old = a.href;
-                        a.href = url.toString();
-                        console.log(`${old} --> ${a.href}`);
+                    } else if (url.pathname.endsWith("/electronics-lessons/")) {
+                        // navigation back to front page with the top nav bar
+                        url.pathname += "index.html";
+                    } else {
+                        continue;
                     }
-                } catch {
+
+                    const old = a.href;
+                    a.href = url.toString();
+                    console.log(`${old} --> ${a.href}`);
+                } catch(e) {
                     // Ignore invalid URLs (e.g., mailto:, javascript:, or malformed strings)
+                    continue;
                 }
             }
         });
@@ -373,31 +382,20 @@ def main():
     <h1>{html.escape(title)}</h1>
     """)
 
-    current_folder = os.path.basename(os.getcwd())
-    root_prefix = ".." if re.fullmatch(r"[0-9][0-9]", current_folder) else "."
-    lesson_folders = sorted(
-        (os.path.basename(path) for path in glob.glob(f"{root_prefix}/[0-9][0-9]")),
-        key=int,
-    )
-    if current_folder in lesson_folders:
-        lesson_index = lesson_folders.index(current_folder)
-        previous_link = ""
-        next_link = ""
-        if lesson_index > 0:
-            previous_folder = lesson_folders[lesson_index - 1]
-            with open(f"{root_prefix}/{previous_folder}/index.txt", "r") as file:
-                previous_title = file.readline().replace("title:", "", 1).strip()
-            previous_link = f'<a href="../{previous_folder}">Previous: {html.escape(previous_title)}</a>'
-        if lesson_index + 1 < len(lesson_folders):
-            next_folder = lesson_folders[lesson_index + 1]
-            with open(f"{root_prefix}/{next_folder}/index.txt", "r") as file:
-                next_title = file.readline().replace("title:", "", 1).strip()
-            next_link = f'<a href="../{next_folder}">Next: {html.escape(next_title)}</a>'
-        print(f'''<nav class="site-nav" aria-label="Lesson navigation">
-    <a href="..">Lesson index</a>
-    {previous_link}
-    {next_link}
-</nav>''')
+    folder_name = os.path.basename(os.getcwd())
+    if folder_name.isdigit():
+        n = int(folder_name)
+        print('<nav class="site-nav" aria-label="Lesson navigation">')
+        print('<a href="..">Lesson List</a>')
+        try:
+            print(f'<a href="../{n-1 :02}">Previous: {html.escape(read_title(f"../{n-1 :02}/index.txt"))}</a>')
+        except FileNotFoundError:
+            pass
+        try:
+            print(f'<a href="../{n+1 :02}">Next: {html.escape(read_title(f"../{n+1 :02}/index.txt"))}</a>')
+        except FileNotFoundError:
+            pass
+        print('</nav>')
 
     convert_block(lines)
 
