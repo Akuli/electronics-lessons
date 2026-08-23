@@ -18,6 +18,17 @@ def parse_inline(text):
     text = re.sub(r"\[([^\[\]]+)\]\(([^()]+)\)", (lambda m: f"<a href='{m.group(2)}'>{m.group(1)}</a>"), text)
     return re.sub(r"\*\*(.*?)\*\*", r"<strong>\1</strong>", text)
 
+
+def read_indented_block(lines, start):
+    block = []
+    while start < len(lines) and (lines[start].startswith("    ") or not lines[start].strip()):
+        block.append(lines[start][4:] if len(lines[start]) >= 4 else "")
+        start += 1
+    while block and not block[-1].strip():
+        block.pop()
+    return block, start
+
+
 def convert_block(lines):
     """Recursively process blocks (notes, questions, pictures, raw, chat lines)."""
     i = 0
@@ -30,56 +41,19 @@ def convert_block(lines):
 
         # Akuli Notes
         if line.startswith("akuli-note:"):
-            note_lines = []
-            while i < len(lines) and (
-                lines[i].startswith("    ") or not lines[i].strip()
-            ):
-                note_lines.append(lines[i][4:] if len(lines[i]) >= 4 else "")
-                i += 1
-
+            note_lines, i = read_indented_block(lines, i)
             print(f'<div class="akuli-note"><strong>Note from Akuli:</strong><br>')
             convert_block(note_lines)
             print("</div>")
 
-        # Collapse (basic/generic variant)
-        elif line.startswith("collapse:"):
-            q_title = line[9:].strip()
-            q_lines = []
-            while i < len(lines) and (
-                lines[i].startswith("    ") or not lines[i].strip()
-            ):
-                q_lines.append(lines[i][4:] if len(lines[i]) >= 4 else "")
-                i += 1
-
-            print(f'<details><summary>{html.escape(q_title)}</summary><div class="collapse-content">')
-            convert_block(q_lines)
-            print('</div></details>')
-
-        # Questions
-        elif line.startswith("question:"):
-            q_title = line.split(":", maxsplit=1)[1].strip()
-            q_lines = []
-            while i < len(lines) and (
-                lines[i].startswith("    ") or not lines[i].strip()
-            ):
-                q_lines.append(lines[i][4:] if len(lines[i]) >= 4 else "")
-                i += 1
-
-            print(f'<details class="question-block"><summary>{html.escape(q_title)}</summary><div class="collapse-content">')
-            convert_block(q_lines)
-            print('</div></details>')
-
-        # Examples
-        elif line.startswith("example:"):
-            q_title = line.split(":", maxsplit=1)[1].strip()
-            q_lines = []
-            while i < len(lines) and (
-                lines[i].startswith("    ") or not lines[i].strip()
-            ):
-                q_lines.append(lines[i][4:] if len(lines[i]) >= 4 else "")
-                i += 1
-
-            print(f'<details class="example-block"><summary>Example: {html.escape(q_title)}</summary><div class="collapse-content">')
+        # Collapsible blocks
+        elif line.startswith(("collapse:", "question:", "example:")):
+            kind, q_title = line.split(":", maxsplit=1)
+            q_lines, i = read_indented_block(lines, i)
+            css_class = {"question": "question-block", "example": "example-block"}.get(kind)
+            class_attr = f' class="{css_class}"' if css_class else ""
+            title_prefix = "Example: " if kind == "example" else ""
+            print(f'<details{class_attr}><summary>{title_prefix}{html.escape(q_title.strip())}</summary><div class="collapse-content">')
             convert_block(q_lines)
             print('</div></details>')
 
@@ -91,60 +65,36 @@ def convert_block(lines):
 
         # Images/Pictures
         elif line.startswith("pic:"):
-            img_file = ""
-            img_from = ""
-            img_caption_append = ""
-            img_max_width = "100%"
-            while i < len(lines) and lines[i].startswith("    "):
-                sub_line = lines[i].strip()
-                if sub_line.startswith("file:"):
-                    img_file = sub_line[5:].strip()
-                elif sub_line.startswith("from:"):
-                    img_from = sub_line[5:].strip()
-                elif sub_line.startswith("caption-append:"):
-                    img_caption_append = sub_line[15:].strip()
-                elif sub_line.startswith("max-width:"):
-                    img_max_width = sub_line[10:].strip()
-                else:
-                    raise ValueError(sub_line)
-                i += 1
+            option_lines, i = read_indented_block(lines, i)
+            options = dict(opt.strip().split(": ", maxsplit=1) for opt in option_lines)
+            for opt in options:
+                assert opt in {"file", "from", "caption-append", "max-width"}, opt
 
-            caption = f"{img_from} sent a picture." if img_from else ""
-            if img_caption_append:
+            caption = f"{options['from']} sent a picture." if "from" in options else ""
+            if "caption-append" in options:
                 caption += " "
-                caption += parse_inline(img_caption_append)
-            caption = caption.strip()
+                caption += parse_inline(options["caption-append"])
             if caption:
                 caption = f"<figcaption>{caption}</figcaption>"
             print(
-                f'<figure class="image-box"><img src="{html.escape(img_file)}" style="max-width: {img_max_width}" alt="Lesson Image">{caption}</figure>'
+                f'<figure class="image-box"><img src="{html.escape(options["file"])}" style="max-width: {options.get("max-width", "100%")}" alt="Lesson Image">{caption}</figure>'
             )
 
         # PDF datasheets
         elif line.startswith("datasheet:"):
-            pdf_file = ""
-            pdf_from = ""
-            pdf_caption_append = ""
-            while i < len(lines) and lines[i].startswith("    "):
-                sub_line = lines[i].strip()
-                if sub_line.startswith("file:"):
-                    pdf_file = sub_line[5:].strip()
-                elif sub_line.startswith("from:"):
-                    pdf_from = sub_line[5:].strip()
-                elif sub_line.startswith("caption-append:"):
-                    pdf_caption_append = sub_line[15:].strip()
-                else:
-                    raise ValueError(sub_line)
-                i += 1
+            option_lines, i = read_indented_block(lines, i)
+            options = dict(opt.strip().split(": ", maxsplit=1) for opt in option_lines)
+            for opt in options:
+                assert opt in {"file", "from", "caption-append"}, opt
 
-            escaped_file = html.escape(pdf_file)
+            escaped_file = html.escape(options["file"])
             download_link = f'<a href="{escaped_file}" target="_blank" rel="noopener noreferrer">Click here to open the datasheet.</a>'
 
             caption_parts = []
-            if pdf_from:
-                caption_parts.append(f"{pdf_from} shared a PDF datasheet.")
-            if pdf_caption_append:
-                caption_parts.append(parse_inline(pdf_caption_append))
+            if "from" in options:
+                caption_parts.append(f"{options['from']} shared a PDF datasheet.")
+            if "caption-append" in options:
+                caption_parts.append(parse_inline(options["caption-append"]))
             
             caption_parts.append(f"{download_link}")
             caption = f"<figcaption>{' '.join(caption_parts)}</figcaption>"
@@ -158,18 +108,13 @@ def convert_block(lines):
 
         # Comment/ignore
         elif line.startswith("comment:"):
-            while i < len(lines) and (
-                lines[i].startswith("    ") or not lines[i].strip()
-            ):
-                i += 1
+            _, i = read_indented_block(lines, i)
 
         # Raw HTML injection
         elif line.startswith("raw:"):
-            while i < len(lines) and (
-                lines[i].startswith("    ") or not lines[i].strip()
-            ):
-                print(lines[i][4:] if len(lines[i]) >= 4 else "")
-                i += 1
+            raw_lines, i = read_indented_block(lines, i)
+            for raw_line in raw_lines:
+                print(raw_line)
 
         elif line.startswith("- "):
             print("<ul>")
@@ -215,7 +160,7 @@ def main():
     # Parse main title
     title = "Lesson"
     if lines and lines[0].startswith("title:"):
-        title = lines[0][6:].strip()
+        title = lines[0].split(":", maxsplit=1)[1].strip()
         lines = lines[1:]
 
     css = """
