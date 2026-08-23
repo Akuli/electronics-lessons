@@ -56,9 +56,6 @@ def convert_block(lines):
             print('</div></details>')
 
         # Questions
-        #
-        # TODO: handle these somehow slightly differently than "collapse"?
-        #       These could be a specific, fancy type of collapse.
         elif line.startswith("question:"):
             q_title = line.split(":", maxsplit=1)[1].strip()
             q_lines = []
@@ -68,14 +65,11 @@ def convert_block(lines):
                 q_lines.append(lines[i][4:] if len(lines[i]) >= 4 else "")
                 i += 1
 
-            print(f'<details><summary>{html.escape(q_title)}</summary><div class="collapse-content">')
+            print(f'<details class="question-block"><summary>{html.escape(q_title)}</summary><div class="collapse-content">')
             convert_block(q_lines)
             print('</div></details>')
 
         # Examples
-        #
-        # TODO: handle these somehow slightly differently than "collapse"?
-        #       These could be a specific, fancy type of collapse.
         elif line.startswith("example:"):
             q_title = line.split(":", maxsplit=1)[1].strip()
             q_lines = []
@@ -85,7 +79,7 @@ def convert_block(lines):
                 q_lines.append(lines[i][4:] if len(lines[i]) >= 4 else "")
                 i += 1
 
-            print(f'<details><summary>Example: {html.escape(q_title)}</summary><div class="collapse-content">')
+            print(f'<details class="example-block"><summary>Example: {html.escape(q_title)}</summary><div class="collapse-content">')
             convert_block(q_lines)
             print('</div></details>')
 
@@ -297,6 +291,20 @@ def main():
         border-radius: 6px;
         margin: 15px 0;
         padding: 10px;
+    }
+    details.example-block {
+        background: #eef6ef;
+        border-color: #c7dcc9;
+    }
+    details.example-block summary {
+        color: #315b39;
+    }
+    details.question-block {
+        background: #e5f0fa;
+        border-color: #a9c8e3;
+    }
+    details.question-block summary {
+        color: #18527d;
     }
     summary {
         font-weight: bold;
