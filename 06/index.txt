@@ -101,9 +101,6 @@ akuli-note:
 <Akuli> the current will be quite large, but apparently not enough to be visible, maybe because the whole thing happens so quick
 <Akuli> ok?
 <adder> OK.
-<Akuli> so a capacitor is a lot like a rechargeable battery
-<Akuli> mathematically you would model both in the same way
-<Akuli> the differences are practical: much smaller capacity, doesn't mind if it goes all the way to empty, etc
 
 
 ## What happens during charging
