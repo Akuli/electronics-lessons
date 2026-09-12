@@ -7,7 +7,42 @@ This page summarizes the most important equations and concepts.
 
 raw:
     <table>
-    TODO: Rows: voltage, current, resistance, power, capacitance. Columns: name, symbol, unit, short desc.
+        <tr>
+            <th>Name</th>
+            <th>Symbol</th>
+            <th>Unit</th>
+            <th>Short description</th>
+        </tr>
+        <tr>
+            <td><a href="01">Voltage</a></td>
+            <td>V</td>
+            <td>volt (V)</td>
+            <td>How strongly electricity is pushed between two points.</td>
+        </tr>
+        <tr>
+            <td><a href="03">Current</a></td>
+            <td>I</td>
+            <td>ampere (A)</td>
+            <td>How much electric charge flows through a component per second.</td>
+        </tr>
+        <tr>
+            <td><a href="04">Resistance</a></td>
+            <td>R</td>
+            <td>ohm (Ω)</td>
+            <td>How much a component resists current flow.</td>
+        </tr>
+        <tr>
+            <td><a href="05">Power</a></td>
+            <td>P</td>
+            <td>watt (W)</td>
+            <td>How quickly energy is transferred or consumed.</td>
+        </tr>
+        <tr>
+            <td><a href="06">Capacitance</a></td>
+            <td>C</td>
+            <td>farad (F)</td>
+            <td>How much charge a capacitor stores for a given voltage.</td>
+        </tr>
     </table>
 
 
