@@ -177,6 +177,7 @@ akuli-note:
     The discussion below uses derivatives.
     You don't need to know how to define or calculate a derivative mathematically,
     but you need to have a **practical** grasp of what a derivative is.
+    Most people don't have that understanding, so I'll briefly explain derivatives here.
 
     The tl;dr is that a derivative is the changing speed of something: it tells how fast a thing changes.
     Anything whose unit is "something per second" is likely a derivative.
@@ -300,7 +301,7 @@ question: Where is the time in the capacitor's equation?
     <Akuli> where's the time?
     <adder> In the derivative?
     <Akuli> yes!
-    <Akuli> it's the derivative with respect to time, often written 
+    <Akuli> it's the derivative with respect to time, often written d/dt
     <Akuli> so derivative(voltage) is not volts, it's volts/second
     <Akuli> ok?
     <adder> OK.
