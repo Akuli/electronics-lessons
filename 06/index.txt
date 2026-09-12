@@ -44,6 +44,10 @@ akuli-note:
 <Akuli> red-to-red black-to-black measurement should show a positive voltage
 <adder> Yes.
 <Akuli> great :)
+
+akuli-note:
+    TODO: picture showing adder's setup
+
 <Akuli> the reason why i wanted to make sure this is right, we're about to use the biggest capacitor you have (100uF)
 <Akuli> and big capacitors are usually electrolytic capacitors (yours are)
 <Akuli> electrolytic capacitors really don't like backwards voltage
@@ -165,14 +169,13 @@ akuli-note:
 <Akuli> it just sits there, as you say
 <adder> And then we disconnect, and it discharges into the LED?
 <Akuli> yes
-<adder> So it's sort of sensitive to what, voltage?
 
 
 ## Capacitors and derivatives
 
 akuli-note:
     The discussion below uses derivatives.
-    You don't really need to know how to define or calculate a derivative mathematically,
+    You don't need to know how to define or calculate a derivative mathematically,
     but you need to have a **practical** grasp of what a derivative is.
 
     The tl;dr is that a derivative is the changing speed of something: it tells how fast a thing changes.
@@ -190,6 +193,7 @@ akuli-note:
 
     Below we use the derivative of a voltage. Its unit is volts/second.
 
+<adder> So it's sort of sensitive to what, voltage?
 <Akuli> so in any two-leg component, the current is somehow determined by the voltage you place across the legs
 <Akuli> e.g. in resistor, current = voltage / resistance
 <Akuli> and in LED, current spikes up at around 2V
