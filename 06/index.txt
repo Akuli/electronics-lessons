@@ -1,0 +1,480 @@
+title: Capacitors
+
+akuli-note:
+    To follow along, you need:
+
+    - The LED-and-resistor setup from [lesson 2](../02): power supply, wire that fits inside power supply plug, alligator clip cables, 1kΩ resistor, LED
+    - 1kΩ resistor (part of the lesson 2 setup)
+    - 10kΩ resistor
+    - 10uF capacitor
+    - 100uF capacitor
+    - A multimeter
+
+    TODO: picture
+
+<Akuli> i think the first thing i want to do is to show a capacitor in action
+<Akuli> do you have the LED resistor setup ready?
+<adder> Yep.
+<adder> Glowing.
+<Akuli> which resistor is it using right now?
+<Akuli> switch to 10kΩ if it's using a 1kΩ
+<adder> Switched.
+<Akuli> great :)
+
+
+## Checking the polarity
+
+<Akuli> which colors of alligator cables do you have coming from power supply?
+<Akuli> still red and green?
+<adder> Red gator, one end to outside of PS, the othe end to resistor, and the further to LED leg.
+<adder> Red and black.
+<adder> Black is the other cable.
+<Akuli> let's check which is plus and which is minus
+<Akuli> it sounds like you might have it backwards, black being plus
+<Akuli> the convention is that red is plus and black is minus
+<adder> Red connects to the outside of PS.
+<adder> Ah.
+<Akuli> put the multimeter to voltage mode
+<Akuli> (and plug in the probe to the correct place for that)
+<Akuli> measure the alligator clips with the multimeter: red to red, black to black
+<Akuli> if it shows a negative voltage, swap the cables around
+<adder> I already swapped them?
+<Akuli> ah, good
+<Akuli> let's check with the meter anyway
+<Akuli> red-to-red black-to-black measurement should show a positive voltage
+<adder> Yes.
+<Akuli> great :)
+<Akuli> the reason why i wanted to make sure this is right, we're about to use the biggest capacitor you have (100uF)
+<Akuli> and big capacitors are usually electrolytic capacitors (yours are)
+<Akuli> electrolytic capacitors really don't like backwards voltage
+<Akuli> they may even explode
+<Akuli> ok?
+<adder> OK.
+
+
+## Capacitor in action
+
+<Akuli> so, find a 100uF capacitor
+<adder> Found.
+<Akuli> (not 100nF, nano is one thousandth of a micro)
+<Akuli> you see how it has a clearly marked minus side?
+<Akuli> usually it's a different color band full of "-" symbols
+<adder> Ah yeah.
+<Akuli> so, whenever you connect this anywhere, that must go to the minus side
+<Akuli> now, disconnect alligator clips from the LED and resistor
+<Akuli> tie the LED and resistor to the two legs of the capacitor
+<Akuli> whatever your black alligator clip connected to, that goes to capacitor's minus leg
+<Akuli> whatever your red alligator clip connected to, that goes to capacitor's plus leg
+<Akuli> basically, connect capacitor where the power supply was
+<adder> No matter if I'm touching over resistor?
+<Akuli> what do you mean?
+<adder> Like the other leg of the resistor is all twisted up around one leg of the capacitor now.
+<Akuli> good
+<Akuli> and the other leg of the LED is probably twisted into the other capacitor leg?
+<adder> Yes.
+<Akuli> great
+<Akuli> and nothing touches directly between capacitor legs?
+<adder> Nope.
+<Akuli> good :)
+<adder> I connected up the gators but it's either too dim or nothing's happening yet.
+<Akuli> LED should be working normally
+<adder> Ah.
+<adder> My wire fell out of + PS.
+<Akuli> :D
+<adder> Glowing.
+<Akuli> now watch what happens if you disconnect the power (use either alligator clip)
+<adder> Yeah.  Apparently it has enough charge to power up the LED for a while.
+<Akuli> exactly :)
+
+akuli-note:
+    TODO: video showing adder's setup
+
+<Akuli> that's what a capacitor does, it maintains a voltage
+<Akuli> when you connect the alligator clip after the LED has turned off, do you get a tiny spark?
+<Akuli> it will be very tiny if visible at all
+<adder> Not really.
+<Akuli> at that moment, the capacitor charges really quickly
+<Akuli> the current will be quite large, but apparently not enough to be visible, maybe because the whole thing happens so quick
+<Akuli> ok?
+<adder> OK.
+<Akuli> so a capacitor is a lot like a rechargeable battery
+<Akuli> mathematically you would model both in the same way
+<Akuli> the differences are practical: much smaller capacity, doesn't mind if it goes all the way to empty, etc
+
+
+## What happens during charging
+
+<adder> So here's a question.
+<adder> When connected up, does it supply electrons to the LED from the capacitor or?
+<adder> And then I imagine recharges at the same time?
+<Akuli> the moment you connect the power supply, it starts feeding a large current into the capacitor
+<Akuli> so electrons go in through one capacitor leg, out through the other
+<adder> So it does NOT charge up, then use itself to power on the LED?
+<adder> It just let whatever flow through it?
+<Akuli> it's not quite sequential like that, LED starts to glow when it's partially charged
+<Akuli> just like how it glows when it's partially discharged
+<Akuli> it's the same process as discharging, but reversed and much faster
+<adder> OK.
+<Akuli> so during charging, the current coming from power supply splits: a small fraction to LED and resistor, most of it to capacitor
+
+
+## Slowing down the charging to see it
+
+<Akuli> let's actually do a thing to see this in action
+<Akuli> disconnect one of the alligator clip cables from capacitor, and stick it onto one leg of the 1kΩ resistor that is currently not used
+<adder> Does it matter which?
+<Akuli> no
+<Akuli> then touch the other end of the resistor to the capacitor
+<Akuli> so that it charges through the 1k resistor
+<Akuli> if you watch the LED closely, you can see that it doesn't immediately light up, there is a tiny delay
+<adder> OK.
+
+akuli-note:
+    TODO: video showing adder's setup
+
+
+## Devices with capacitors
+
+<Akuli> do you happen to have a laptop charger that has a light indicating that there's power?
+<Akuli> i have had a few, and those would always show the light for a while even after unplugging them
+<Akuli> that's a capacitor inside the charger :)
+<adder> Nope, charging through some universal PS and generic cables.
+<Akuli> many other devices are like this too, trying to think of an example
+<adder> But I've seen that happening.
+<Akuli> great :)
+<Akuli> so now you know what does it
+
+
+## What happens after charging
+
+<Akuli> do you now have a good intuition to what a capacitor does?
+<adder> Well, try quizzing me.
+<Akuli> trying to think of a question
+<adder> While you think it up, I'll try to make this perfectly clear in my head.
+<adder> So, once the capacitor is all charged up, who is supplying electricity to LED?
+<adder> Where is it coming from?
+<Akuli> that's a great question actually :)
+<Akuli> do you want to try to answer it first?
+<adder> Well, I'm just not sure whether it comes out of the capacitor, or if it goes AROUND the capacitor from the PS, while it sits there charged up.
+<Akuli> "sits there charged up" is key
+<Akuli> when you are not charging or discharging a capacitor (that is, voltage doesn't change), its current is zero
+<adder> OK.
+<Akuli> we'll make this more precise in a moment, but current through a capacitor is always charging or discharging it, depending on direction
+<adder> OK.
+<Akuli> so if it's fully charged the whole time, the power supply is doing all the work
+<Akuli> it just sits there, as you say
+<adder> And then we disconnect, and it discharges into the LED?
+<Akuli> yes
+<adder> So it's sort of sensitive to what, voltage?
+
+
+## Capacitors and derivatives
+
+akuli-note:
+    The discussion below uses derivatives.
+    You don't really need to know how to define or calculate a derivative mathematically,
+    but you need to have a **practical** grasp of what a derivative is.
+
+    The tl;dr is that a derivative is the changing speed of something: it tells how fast a thing changes.
+    Anything whose unit is "something per second" is likely a derivative.
+
+    Examples:
+
+    - When a car is moving, the derivative of the distance it has moved (metres) is the car's speed (metres/second). A positive derivative like 20m/s (also known as 72km/h or 44.7mph) means that the car moves forward. A negative derivative like -1m/s means that the car is reversing. Derivative being zero means that the car is not moving.
+    - When downloading a file, the derivative of the amount of downloaded data (megabytes) is the download speed (megabytes/second). This derivative cannot be negative. Derivative being zero means that the downloading is stuck or paused.
+
+    Mathematically, it is also possible to use something else instead of time,
+    but that is rare in practice.
+    Another way to say this, using fancier language,
+    is that all the derivatives here are with respect to time.
+
+    Below we use the derivative of a voltage. Its unit is volts/second.
+
+<Akuli> so in any two-leg component, the current is somehow determined by the voltage you place across the legs
+<Akuli> e.g. in resistor, current = voltage / resistance
+<Akuli> and in LED, current spikes up at around 2V
+<Akuli> ok?
+<adder> OK.
+<Akuli> in a capacitor, the current is determined by the change rate of the voltage (volts/second)
+<Akuli> so if you increase the voltage, current flows one way
+<Akuli> and if you decrease voltage, current flows the other way
+<Akuli> but if voltage remains the same, there's no current
+<Akuli> ok?
+<adder> Derivative is zero.
+<Akuli> yeah
+<Akuli> it's exactly the derivative that matters here
+<adder> So what happens if derivative is big?
+<Akuli> current = constant * derivative(voltage)
+<Akuli> big derivative means you're charging or discharging the capacitor quickly
+<adder> More current.
+<Akuli> yes
+<Akuli> an example is plugging it into the power supply with no resistor in between
+<Akuli> big charge current, big derivative, voltage rises quickly
+<Akuli> ok?
+<adder> OK.
+<Akuli> that was an example where derivative(voltage) was big and positive
+<Akuli> it can also be big and negative
+<Akuli> that means discharging the capacitor quickly by e.g. touching its legs to each other (don't do that while connected to power supply)
+<Akuli> (power supply wouldn't like it)
+<Akuli> ok?
+<adder> OK.
+
+
+## Discharging the capacitor quickly
+
+<Akuli> let's actually try that
+<Akuli> put the 1kΩ resistor there somewhat permanently so that you don't need to hold it by hand
+<Akuli> twist it around the capacitor leg or something
+<adder> OK.
+<Akuli> so now the power supply is powering the capacitor and LED-resistor pair
+<Akuli> but it all happens through the 1kΩ resistor
+<Akuli> if we connect capacitor's legs to each other, we unleash the whole power supply on the 1kΩ resistor, which is fine
+<Akuli> as calculated last time, the 0.25W 1kΩ resistor can handle 15.8V with no issues, and your power supply is only 7.7 volts
+<Akuli> ok?
+<adder> OK.
+<Akuli> and current will only be 7.7 mA
+<Akuli> i.e. small
+<Akuli> ok?
+<adder> OK.
+<Akuli> so with this setup, 1k resistor and power supply are both happy if you touch the capacitor's legs
+<Akuli> now do it :)
+<adder> While everything is glowing?
+<Akuli> yes
+<Akuli> this time, you might see a tiny spark
+<Akuli> that is the capacitor discharging as fast as it can
+<adder> OK.
+<adder> No spark.
+<Akuli> yeah
+<Akuli> it is not a very big capacitor
+<Akuli> this week i (accidentally?) did that with a 2200uF capacitor and it was visible, still not huge
+
+question: Does a capacitor detect change in voltage?
+    <adder> So, does a capacitor "detect" change in voltage?
+    <Akuli> that's not a bad way to think about it
+    <Akuli> if you think of two-leg components as taking a voltage as an input and acting based on it to cause some current, then yes, that is the right mental model
+    <adder> OK.
+    <Akuli> it is basically the electronics equivalent of a derivative operation
+
+
+## Smaller capacitor
+
+<Akuli> hmmm
+<Akuli> let's try a 10uF capacitor instead of 100uF
+<adder> What does that look like?
+<Akuli> physically a bit smaller
+<Akuli> same shape
+<adder> Green ugly ballooney thing or white rectangular?
+<Akuli> not rectangular, still cylindrical
+<Akuli> ahhh you might not have them
+<adder> I do have it.
+<Akuli> great! :)
+<Akuli> unfortunately, you will need to rewire quite a bit of things, because everything's tangled around the capacitor legs
+<adder> So, short LED leg <=> 10K <=> - Capacitor, what goes on + capacitor?
+<Akuli> long LED leg
+<Akuli> think of the capacitor as a power supply
+<Akuli> if it was a power supply, it should turn on the LED through the resistor
+<adder> OK.
+<Akuli> try powering it on
+<Akuli> notice anything different?
+<adder> Not entirely sure.
+<adder> Something about the timing?
+<Akuli> yes
+<Akuli> everything should be 10 times faster
+<adder> OK.
+<Akuli> if you're powering on through 1k, there's still a tiny delay when turning on, but now it's so tiny you can't really see it
+<Akuli> discharging delay should still be visible, though quite quick
+<adder> Yeah.
+<Akuli> so, bigger capacitance = slower
+<Akuli> in this circuit, the capacitor is the only component aware of time
+<Akuli> everything else happens basically immediately
+<Akuli> ok?
+<adder> OK.
+
+question: Where is the time in the capacitor's equation?
+    <Akuli> now, question for you
+    <Akuli> the equation describing capacitor behavior is:   current = constant * derivative(voltage)
+    <Akuli> where's the time?
+    <adder> In the derivative?
+    <Akuli> yes!
+    <Akuli> it's the derivative with respect to time, often written 
+    <Akuli> so derivative(voltage) is not volts, it's volts/second
+    <Akuli> ok?
+    <adder> OK.
+
+
+## Capacitance
+
+akuli-note:
+    Below "that constant" refers to the "constant" part of "current = constant * derivative(voltage)".
+
+<Akuli> so, what is that constant?
+<Akuli> that constant is known as capacitance, and it's the 10uF or 100uF
+<adder> OK.
+
+
+## Detailed walk-through of discharging
+
+<Akuli> for example, let's consider what happens when the discharging begins
+<Akuli> current is 5.6mA or whatever we measured last time
+<Akuli> hmm, no
+<Akuli> we're using 10k resistor so it's 0.6mA
+<Akuli> ok?
+<adder> OK.
+<Akuli> so the moment you disconnect the power supply, the LED and resistor don't notice anything yet
+<Akuli> the capacitor maintains the voltage
+<Akuli> so the 0.6mA is initially accurate
+<Akuli> over time, as the capacitor discharges, the current will decrease too, but at first it stays at 0.6mA
+<Akuli> ok?
+<adder> OK.
+<Akuli> so:   0.6mA = 100uF * derivative(voltage)
+<Akuli> ok?
+<adder> OK.
+<Akuli> now solve derivative(voltage)
+<adder> d = 0.6mA/100uF
+<Akuli> hint: 0.6mA = 600uA
+<adder> = 6V/s?
+<Akuli> yes!
+<Akuli> but something's wrong
+<Akuli> this is positive, so capacitor seems to be charging???
+<adder> -6V/s?
+<Akuli> yes
+<Akuli> the correct starting point would be:  -0.6mA = 100uF * derivative(voltage)
+<adder> I see.
+<Akuli> negative current means discharging, positive current means charging
+<Akuli> so the current is always the same sign as the derivative, because capacitance is positive
+<Akuli> ok?
+<adder> OK.
+<Akuli> so initially we discharge at 6V/s
+<Akuli> so within the first 0.1 seconds, we drop from 7.7V to maybe 7.1V
+<Akuli> 6V/s means 0.6V in 0.1s
+<Akuli> ok?
+<adder> OK.
+<Akuli> now, at 7.1V, the current used by LED and resistor is smaller
+<Akuli> the resistor voltage has dropped by 0.6V
+<Akuli> according to what i've written about the last lessons, it was 5.8V when power supply was still plugged in and discharging started
+<Akuli> so now the resistor voltage is around 5.2V
+<Akuli> ok?
+<adder> OK.
+<Akuli> with 10k resistor, this makes the discharging current 0.52mA instead of 0.6mA (which was actually 0.58mA)
+<Akuli> so during the discharging, the discharging process slows down
+<Akuli> ok?
+<adder> OK.
+<Akuli> basically, voltage doesn't go down in a straight line
+<Akuli> it goes down in a curve
+<adder> OK.
+
+
+## Visualizing the discharging curve
+
+<Akuli> trying to set this up in simulator to show the curve
+<Akuli> hmmm
+<Akuli> or better yet, i could use my oscilloscope
+<Akuli> to show you the curve with actual components :)
+<Akuli> this will take 5min or so to set up :)
+<Akuli> maybe 10min
+<adder> OK.
+<adder> So, does this lead somewhere?  ->  We need a large current if we want to change the voltage across the capacitor rapidly.
+<Akuli> yes, that's just quick charging/discharging
+
+video:
+    file: scope-curve.mp4
+    from: Akuli
+    max-width: 40%
+
+<adder> Awesome.  :)
+
+
+## What is a farad: farad = amp / (volt/second)
+
+<Akuli> let's talk about units a bit
+<Akuli> i'll show you what exactly F means, and that will lead us to a quick way to see how quickly discharging is going to happen
+<Akuli> ok?
+<adder> OK.
+<Akuli> so what exactly is farad, the unit of capacitance?
+<Akuli> first, farad is a huge unit
+<Akuli> you almost always see microfarads
+<adder> OK.
+<Akuli> (or nanofarads or picofarads)
+<Akuli> so, what is a farad?
+<Akuli> we can look at units in the equation:   current = capacitance * derivative(voltage)
+<Akuli> amps = farads * volts/second
+<Akuli> ok?
+<adder> OK.
+<Akuli> now solve farads :)
+<adder> farads = amps/(volts/second)
+<Akuli> yeah
+<Akuli> and in this form it's probably the most intuitive
+<Akuli> how many amps would be needed to change voltage that fast
+<adder> I see.
+<Akuli> this probably needs an example
+<Akuli> let's say you have 1000uF capacitor, so pretty big but not ridiculous
+<Akuli> (that is 1 millifarad)
+<Akuli> that means, a current of 1mA corresponds with 1 volt/second
+<Akuli> mF = (mA)/(V/s)
+<adder> OK.
+<Akuli> and with your 100uF, just 0.1mA is enough to cause 1 volt per second
+<Akuli> hence, with 0.6mA we got 6V/s
+<Akuli> ok?
+<adder> OK.
+
+
+## Why microfarads: farad = amp*second / volt
+
+<Akuli> let's spin that around a bit to make it into something mathematically cleaner but less intuitive...
+<Akuli> farad = amp/(volt/second)
+<Akuli> farad = amp*second / volt
+<Akuli> ok?
+<adder> OK.
+<Akuli> amps are a large unit, we usually use mA
+<Akuli> seconds are also quite a large unit, often interesting stuff happens at milliseconds level
+<Akuli> so usually, milli*milli, that's why microfarads :)
+<Akuli> ok?
+<adder> OK.
+
+
+## The RC time constant: farad = second / (volt/amp)
+
+<Akuli> let's spin that around yet one more way....
+<Akuli> farad = amp*second / volt
+<Akuli> farad = second / (volt/amp)
+<Akuli> ok?
+<adder> OK.
+<Akuli> what's volt/amp?
+<adder> Ohm?
+<Akuli> yes!
+<Akuli> farad = second / ohm
+<Akuli> ok?
+<adder> OK.
+<Akuli> second = farad*ohm
+<Akuli> so if you multiply a capacitance and a resistance, you get... seconds???
+<Akuli> 10kΩ * 100uF = 1s
+<adder> RC.  :)
+<Akuli> yeah :)
+<Akuli> so, R*C is seconds
+<Akuli> when you discharge a capacitor through a resistor, bigger resistance means that discharging is slower
+<Akuli> because the current will be lower for any voltage
+<Akuli> ok?
+<adder> OK.
+<Akuli> and bigger capacitance also means that discharging will be slower
+<Akuli> ok?
+<adder> OK.
+<Akuli> so R*C takes into account both of those effects and spits out a number that somewhat describes the discharging rate
+<Akuli> before this lesson, the only preparation I really did was to mentally compute 10kΩ * 100uF = 1s, to confirm that 100uF cap would work reasonably well for this
+<Akuli> ok?
+<adder> OK.
+<Akuli> the RC time is NOT some kind of "totally discharges in this time" kind of thing
+<adder> 63%?
+<Akuli> yes, in reality, the capacitor loses about 63% of its voltage in RC time
+<adder> OK.
+<Akuli> and then in 2RC time it would lose another 63% of the remaining voltage, and so on
+<Akuli> never getting really fully empty
+<Akuli> ok?
+<adder> OK.
+<Akuli> i'm not going to derive why about 63%, because it's really more math than electronics, unless you want of course :)
+<adder> Not now really.
+<adder> I do have an idea though.
+<Akuli> yeah, me neither
+<Akuli> but the practical takeaway is that R*C gives you an idea of how fast stuff is going to happen
+<Akuli> ok?
+<adder> OK.
+<Akuli> i think that's a lesson :)
