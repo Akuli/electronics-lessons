@@ -19,3 +19,5 @@ As such, this site by itself is not enough to get started with electronics.
 However, I expect this site to be useful alongside some other intro-to-electronics resource of your choice.
 
 lesson-list
+
+- [Cheat sheet](cheat-sheet.html)

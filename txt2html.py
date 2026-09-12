@@ -1,5 +1,6 @@
 # Initial version vibe coded
 
+import argparse
 import os
 import glob
 import html
@@ -14,9 +15,33 @@ def read_title(filename):
 
 def parse_inline(text):
     """Parses inline formatting like **bold** text to HTML standard."""
-    text = html.escape(text)
-    text = re.sub(r"\[([^\[\]]+)\]\(([^()]+)\)", (lambda m: f"<a href='{m.group(2)}'>{m.group(1)}</a>"), text)
-    return re.sub(r"\*\*(.*?)\*\*", r"<strong>\1</strong>", text)
+    regex = r'''
+      (?P<link> \[ [^\[\]]+ \] \( [^()]+ \) )
+    | (?P<bold> \*\* .*? \*\* )
+    | (?P<code> ` .+? ` )
+    '''
+
+    result = ""
+    last_end = 0
+
+    for m in re.finditer(regex, text, flags=re.VERBOSE):
+        result += html.escape(text[last_end:m.start(0)])
+        last_end = m.end(0)
+
+        match_text = m.group(0)
+        match m.lastgroup:
+            case 'link':
+                i = match_text.index('](')
+                result += f"<a href='{match_text[i+2:-1]}'>{parse_inline(match_text[1:i])}</a>"
+            case 'bold':
+                result += '<strong>' + parse_inline(match_text.strip("*")) + '</strong>'
+            case 'code':
+                result += '<code>' + html.escape(match_text.strip('`')) + '</code>'
+            case _ as regex_group_name:
+                raise NotImplementedError(regex_group_name)
+
+    result += html.escape(text[last_end:])
+    return result
 
 
 def read_indented_block(lines, i):
@@ -185,8 +210,9 @@ def convert_block(lines):
 
 
 def main():
-    if len(sys.argv) > 1:
-        sys.exit("Usage: python txt2html.py < input.txt > output.html")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--no-nav", action="store_true", help="disable navigation buttons")
+    args = parser.parse_args()
 
     lines = sys.stdin.read().split("\n")
 
@@ -368,19 +394,22 @@ def main():
     <h1>{html.escape(title)}</h1>
     """)
 
-    folder_name = os.path.basename(os.getcwd())
-    if folder_name.isdigit():
-        n = int(folder_name)
+    if not args.no_nav:
         print('<nav class="site-nav" aria-label="Lesson navigation">')
-        print('<a href="..">Lesson List</a>')
         try:
-            print(f'<a href="../{n-1 :02}">Previous: {html.escape(read_title(f"../{n-1 :02}/index.txt"))}</a>')
-        except FileNotFoundError:
-            pass
-        try:
-            print(f'<a href="../{n+1 :02}">Next: {html.escape(read_title(f"../{n+1 :02}/index.txt"))}</a>')
-        except FileNotFoundError:
-            pass
+            n = int(os.path.basename(os.getcwd()))
+        except ValueError:
+            print('<a href=".">Lesson List</a>')
+        else:
+            print('<a href="..">Lesson List</a>')
+            try:
+                print(f'<a href="../{n-1 :02}">Previous: {html.escape(read_title(f"../{n-1 :02}/index.txt"))}</a>')
+            except FileNotFoundError:
+                pass
+            try:
+                print(f'<a href="../{n+1 :02}">Next: {html.escape(read_title(f"../{n+1 :02}/index.txt"))}</a>')
+            except FileNotFoundError:
+                pass
         print('</nav>')
 
     convert_block(lines)

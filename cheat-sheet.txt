@@ -1,0 +1,21 @@
+title: Cheat Sheet
+
+This page summarizes the most important equations and concepts.
+
+
+## Quantities
+
+raw:
+    <table>
+    TODO: Rows: voltage, current, resistance, power, capacitance. Columns: name, symbol, unit, short desc.
+    </table>
+
+
+## Important formulas
+
+- Lessons 1 and 2: [`V(A → B) + V(B → C) = V(A → C)`](01#the-important-equation). Describes how voltages from multiple batteries add up, or how one voltage spreads among multiple components. Also essential for understanding how ground works.
+- Lesson 3: [`sum(currents in) = sum(currents out)`](03#the-important-equation-of-currents). Applies to basically any component. For two-leg components, this means that you only need to consider one current.
+- Lesson 4: [`I = V/R`, or `V = RI`](04#what-is-resistance). This is how a resistor works.
+- Lesson 5: [`P = VI`](05#current-of-1-5kw-heater). This is the power in watts that a power supply outputs, and can be used to calculate how much a component heats up.
+- Lesson 5: [`P = V^2 / R` and `P = R I^2`](05#power-of-resistor-convenient-equations). These are `P = VI` applied to a resistors.
+- Lesson 6: [`current = capacitance * derivative(voltage)`](06#capacitors-and-derivatives). This is how a capacitor works: current flows whenever the voltage changes.
