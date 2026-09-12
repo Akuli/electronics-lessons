@@ -138,8 +138,9 @@ def convert_block(lines):
         # Lesson List
         elif line.strip() == "lesson-list":
             print("<ol>")
-            for subfolder in sorted(glob.glob("[0-9][0-9]"), key=int):
-                print(f'<li><a href="{subfolder}" class="lesson-list-link">{html.escape(read_title(subfolder + "/index.txt"))}</a></li>')
+            for index_txt in sorted(glob.glob("[0-9][0-9]/index.txt")):
+                subfolder = os.path.dirname(index_txt)
+                print(f'<li><a href="{subfolder}" class="lesson-list-link">{html.escape(read_title(index_txt))}</a></li>')
             print("</ol>")
 
         # Paragraph text
