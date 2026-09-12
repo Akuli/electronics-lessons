@@ -30,7 +30,7 @@ def read_indented_block(lines, i):
 
 
 def convert_block(lines):
-    """Recursively process blocks (notes, questions, pictures, raw, chat lines)."""
+    """Recursively process blocks (notes, questions, pictures, videos, raw, chat lines)."""
     i = 0
     while i < len(lines):
         line = lines[i]
@@ -78,6 +78,37 @@ def convert_block(lines):
                 caption = f"<figcaption>{caption}</figcaption>"
             print(
                 f'<figure class="image-box"><img src="{html.escape(options["file"])}" style="max-width: {options.get("max-width", "100%")}" alt="Lesson Image">{caption}</figure>'
+            )
+
+        # Videos
+        elif line.startswith("video:"):
+            vid_file = ""
+            vid_from = ""
+            vid_caption_append = ""
+            vid_max_width = "100%"
+            while i < len(lines) and lines[i].startswith("    "):
+                sub_line = lines[i].strip()
+                if sub_line.startswith("file:"):
+                    vid_file = sub_line[5:].strip()
+                elif sub_line.startswith("from:"):
+                    vid_from = sub_line[5:].strip()
+                elif sub_line.startswith("caption-append:"):
+                    vid_caption_append = sub_line[15:].strip()
+                elif sub_line.startswith("max-width:"):
+                    vid_max_width = sub_line[10:].strip()
+                else:
+                    raise ValueError(sub_line)
+                i += 1
+
+            caption = f"{vid_from} sent a video." if vid_from else ""
+            if vid_caption_append:
+                caption += " "
+                caption += parse_inline(vid_caption_append)
+            caption = caption.strip()
+            if caption:
+                caption = f"<figcaption>{caption}</figcaption>"
+            print(
+                f'<figure class="video-box"><video src="{html.escape(vid_file)}" style="max-width: {vid_max_width}" controls></video>{caption}</figure>'
             )
 
         # PDF datasheets
@@ -263,11 +294,11 @@ def main():
         padding-top: 10px;
         border-top: 1px solid #dcdfe3;
     }
-    figure.image-box {
+    figure.image-box, figure.video-box {
         margin: 20px 0;
         text-align: center;
     }
-    figure.image-box img {
+    figure.image-box img, figure.video-box video {
         max-width: 100%;
         border-radius: 6px;
         border: 1px solid #ddd;
