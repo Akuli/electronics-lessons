@@ -54,8 +54,40 @@ def read_indented_block(lines, i):
     return block, i
 
 
+def parse_table_row(line):
+    line = line.strip()
+    if line.startswith("|"):
+        line = line[1:]
+    if line.endswith("|"):
+        line = line[:-1]
+    return [cell.strip() for cell in line.split("|")]
+
+
+def convert_table(lines, i):
+    table_lines, i = read_indented_block(lines, i)
+    rows = [parse_table_row(line) for line in table_lines if line.strip()]
+    if len(rows) < 2 or not all(re.fullmatch(r":?-{3,}:?", cell) for cell in rows[1]):
+        raise ValueError("table needs a header row followed by a separator row")
+    if len(rows[0]) != len(rows[1]) or any(len(row) != len(rows[0]) for row in rows[2:]):
+        raise ValueError("all table rows must have the same number of cells")
+
+    print("<table>")
+    print("<thead><tr>")
+    for cell in rows[0]:
+        print(f"<th>{parse_inline(cell)}</th>")
+    print("</tr></thead>")
+    print("<tbody>")
+    for row in rows[2:]:
+        print("<tr>")
+        for cell in row:
+            print(f"<td>{parse_inline(cell)}</td>")
+        print("</tr>")
+    print("</tbody></table>")
+    return i
+
+
 def convert_block(lines):
-    """Recursively process blocks (notes, questions, pictures, videos, raw, chat lines)."""
+    """Recursively process blocks (notes, questions, pictures, videos, tables, raw, chat lines)."""
     i = 0
     while i < len(lines):
         line = lines[i]
@@ -165,6 +197,10 @@ def convert_block(lines):
         # Comment/ignore
         elif line.startswith("comment:"):
             _, i = read_indented_block(lines, i)
+
+        # Tables
+        elif line.startswith("table:"):
+            i = convert_table(lines, i)
 
         # Raw HTML injection
         elif line.startswith("raw:"):

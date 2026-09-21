@@ -37,3 +37,19 @@ They should not be committed to git, and they will be overwritten by the next bu
 Each `.html` file is somewhat self-contained.
 For example, all CSS is baked in, not distributed as a separate `.css` file.
 This makes the `.html` files slightly bigger, but also easier to reason about.
+
+## Tables
+
+Tables use a Markdown-shaped block in the source `.txt` files:
+
+```
+table:
+	| Name | Value |
+	| --- | --- |
+	| Example | `42` |
+```
+
+The first row becomes the header, the second row must contain dash separators,
+and the remaining rows become table data. Table cells support the same inline
+formatting as paragraphs, including links, bold text, and code. Use `raw:` for
+tables that need HTML such as `<br>` line breaks.
