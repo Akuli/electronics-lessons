@@ -72,34 +72,13 @@ pic:
 <adder> So a bit more voltage?
 <Akuli> yeah
 
-raw:
-    <table>
-        <tr>
-            <th>Battery</th>
-            <th>Type</th>
-            <th>Measured voltage</th>
-        </tr>
-        <tr>
-            <td>adder's first battery</td>
-            <td>AA</td>
-            <td>about 1.2V</td>
-        </tr>
-        <tr>
-            <td>adder's second battery</td>
-            <td>AAA</td>
-            <td>about 1.3V</td>
-        </tr>
-        <tr>
-            <td>adder's third battery</td>
-            <td>AA</td>
-            <td>1.246V</td>
-        </tr>
-        <tr>
-            <td>Akuli's battery</td>
-            <td>AA</td>
-            <td>1.593V</td>
-        </tr>
-    </table>
+table:
+    | Battery | Type | Measured voltage |
+    | --- | --- | --- |
+    | adder's first battery | AA | about 1.2V |
+    | adder's second battery | AAA | about 1.3V |
+    | adder's third battery | AA | 1.246V |
+    | Akuli's battery | AA | 1.593V |
 
 
 ## What does voltage mean?

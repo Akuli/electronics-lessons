@@ -16,9 +16,10 @@ def read_title(filename):
 def parse_inline(text):
     """Parses inline formatting like **bold** text to HTML standard."""
     regex = r'''
-      (?P<link> \[ [^\[\]]+ \] \( [^()]+ \) )
-    | (?P<bold> \*\* .*? \*\* )
-    | (?P<code> ` .+? ` )
+        (?P<br> <br\s*/?> )
+        | (?P<link> \[ [^\[\]]+ \] \( [^()]+ \) )
+        | (?P<bold> \*\* .*? \*\* )
+        | (?P<code> ` .+? ` )
     '''
 
     result = ""
@@ -30,6 +31,8 @@ def parse_inline(text):
 
         match_text = m.group(0)
         match m.lastgroup:
+            case 'br':
+                result += match_text
             case 'link':
                 i = match_text.index('](')
                 result += f"<a href='{match_text[i+2:-1]}'>{parse_inline(match_text[1:i])}</a>"
@@ -54,8 +57,33 @@ def read_indented_block(lines, i):
     return block, i
 
 
+def parse_table_row(line):
+    return [cell.strip() for cell in line.strip().strip("|").split("|")]
+
+
+def convert_table(lines, i):
+    table_lines, i = read_indented_block(lines, i)
+    rows = [parse_table_row(line) for line in table_lines if line.strip()]
+    assert len(rows) >= 3
+    assert all(re.fullmatch(r"-{3,}", cell) for cell in rows[1])
+    assert all(len(row) == len(rows[0]) for row in rows)
+
+    print("<table>")
+    print("<tr>")
+    for cell in rows[0]:
+        print(f"<th>{parse_inline(cell)}</th>")
+    print("</tr>")
+    for row in rows[2:]:
+        print("<tr>")
+        for cell in row:
+            print(f"<td>{parse_inline(cell)}</td>")
+        print("</tr>")
+    print("</table>")
+    return i
+
+
 def convert_block(lines):
-    """Recursively process blocks (notes, questions, pictures, videos, raw, chat lines)."""
+    """Recursively process blocks (notes, questions, pictures, videos, tables, raw, chat lines)."""
     i = 0
     while i < len(lines):
         line = lines[i]
@@ -165,6 +193,10 @@ def convert_block(lines):
         # Comment/ignore
         elif line.startswith("comment:"):
             _, i = read_indented_block(lines, i)
+
+        # Tables
+        elif line.startswith("table:"):
+            i = convert_table(lines, i)
 
         # Raw HTML injection
         elif line.startswith("raw:"):

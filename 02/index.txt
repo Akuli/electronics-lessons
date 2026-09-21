@@ -277,25 +277,12 @@ akuli-note:
 <adder> Got correct signs with consistent probing.
 <Akuli> nice! :)
 
-raw:
-    <table>
-        <tr>
-            <th>Measured voltage</th>
-            <th>Value</th>
-        </tr>
-        <tr>
-            <td>Between the alligator clips</td>
-            <td>7.7V</td>
-        </tr>
-        <tr>
-            <td>Between LED legs</td>
-            <td>1.85V</td>
-        </tr>
-        <tr>
-            <td>Between resistor legs</td>
-            <td>5.85V</td>
-        </tr>
-    </table>
+table:
+    | Measured voltage | Value |
+    | --- | --- |
+    | Between the alligator clips | 7.7V |
+    | Between LED legs | 1.85V |
+    | Between resistor legs | 5.85V |
 
 
 ## Why the resistor is needed
