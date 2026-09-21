@@ -1,0 +1,56 @@
+title: Cheat Sheet
+
+This page summarizes the most important equations and concepts.
+
+
+## Quantities
+
+raw:
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Symbol</th>
+            <th>Unit</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td><a href="01">Voltage</a></td>
+            <td><code>V</code></td>
+            <td>volt<br><code>V</code></td>
+            <td>How much electricity wants to move from one point to another.</td>
+        </tr>
+        <tr>
+            <td><a href="03">Current</a></td>
+            <td><code>I</code></td>
+            <td>ampere (amp)<br><code>A</code></td>
+            <td>How much electricity is actually moving. 1A = very large number of electrons per second.</td>
+        </tr>
+        <tr>
+            <td><a href="04">Resistance</a></td>
+            <td><code>R</code></td>
+            <td>ohm<br><code>Ω = V/A</code></td>
+            <td>Determines the current through a resistor. Bigger resistance means less current for the same voltage.</td>
+        </tr>
+        <tr>
+            <td><a href="05">Power</a></td>
+            <td><code>P</code></td>
+            <td>watt<br><code>W = V*A</code></td>
+            <td>How much energy moves per second, or how much a component heats up</td>
+        </tr>
+        <tr>
+            <td><a href="06">Capacitance</a></td>
+            <td><code>C</code></td>
+            <td>farad<br><code>F</code></td>
+            <td>Determines the current through a capacitor. Bigger capacitance means more current (amps) is needed for the same charging or discharging speed (volts/second).</td>
+        </tr>
+    </table>
+
+
+## Important formulas
+
+- Lessons 1 and 2: [`V(A → B) + V(B → C) = V(A → C)`](01#the-important-equation). Describes how voltages from multiple batteries add up, or how one voltage spreads among multiple components. Also essential for understanding how ground works.
+- Lesson 3: [`sum(currents in) = sum(currents out)`](03#the-important-equation-of-currents). Applies to basically any component. For two-leg components, this means that you only need to consider one current.
+- Lesson 4: [`I = V/R`, or `V = RI`](04#what-is-resistance). This is how a resistor works.
+- Lesson 5: [`P = VI`](05#current-of-1-5kw-heater). The power in watts that a power supply outputs, or how much a component heats up.
+- Lesson 5: [`P = V^2 / R` and `P = R I^2`](05#power-of-resistor-convenient-equations). These are `P = VI` applied to a resistors.
+- Lesson 6: [`current = capacitance * derivative(voltage)`](06#capacitors-and-derivatives). This is how a capacitor works: current flows whenever the voltage changes.
