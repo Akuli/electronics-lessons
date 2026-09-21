@@ -51,5 +51,4 @@ table:
 
 The first row becomes the header, the second row must contain dash separators,
 and the remaining rows become table data. Table cells support the same inline
-formatting as paragraphs, including links, bold text, and code. Use `raw:` for
-tables that need HTML such as `<br>` line breaks.
+formatting as paragraphs, including links, bold text, code, and `<br>` line breaks.

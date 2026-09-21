@@ -16,7 +16,8 @@ def read_title(filename):
 def parse_inline(text):
     """Parses inline formatting like **bold** text to HTML standard."""
     regex = r'''
-      (?P<link> \[ [^\[\]]+ \] \( [^()]+ \) )
+            (?P<br> <br\s*/?> )
+        | (?P<link> \[ [^\[\]]+ \] \( [^()]+ \) )
     | (?P<bold> \*\* .*? \*\* )
     | (?P<code> ` .+? ` )
     '''
@@ -30,6 +31,8 @@ def parse_inline(text):
 
         match_text = m.group(0)
         match m.lastgroup:
+            case 'br':
+                result += match_text
             case 'link':
                 i = match_text.index('](')
                 result += f"<a href='{match_text[i+2:-1]}'>{parse_inline(match_text[1:i])}</a>"

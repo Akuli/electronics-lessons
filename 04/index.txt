@@ -110,44 +110,13 @@ akuli-note:
 <adder> 2.077V
 <Akuli> there we go :D
 
-raw:
-    <table>
-        <tr>
-            <th>LED</th>
-            <th>Resistor</th>
-            <th>Measured current</th>
-            <th>LED voltage</th>
-            <th>Resistor voltage<br>(calculated for 7.7V power supply)</th>
-        </tr>
-        <tr>
-            <td>red</td>
-            <td>1kΩ</td>
-            <td>?</td>
-            <td>1.85V</td>
-            <td>5.85V</td>
-        </tr>
-        <tr>
-            <td>red</td>
-            <td>10kΩ</td>
-            <td>0.6mA</td>
-            <td>?</td>
-            <td>?</td>
-        </tr>
-        <tr>
-            <td>green</td>
-            <td>1kΩ</td>
-            <td>5.6mA</td>
-            <td>2.1V (meter: 2.077V)</td>
-            <td>5.6V</td>
-        </tr>
-        <tr>
-            <td>green</td>
-            <td>10kΩ</td>
-            <td>0.6mA</td>
-            <td>1.9V</td>
-            <td>5.8V</td>
-        </tr>
-    </table>
+table:
+    | LED | Resistor | Measured current | LED voltage | Resistor voltage<br>(calculated for 7.7V power supply) |
+    | --- | --- | --- | --- | --- |
+    | red | 1kΩ | ? | 1.85V | 5.85V |
+    | red | 10kΩ | 0.6mA | ? | ? |
+    | green | 1kΩ | 5.6mA | 2.1V (meter: 2.077V) | 5.6V |
+    | green | 10kΩ | 0.6mA | 1.9V | 5.8V |
 
 <Akuli> so that tiny 0.1V change causes the LED to eat 10 times more current
 <Akuli> went from 0.6mA to 6mA or something like that

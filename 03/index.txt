@@ -247,24 +247,11 @@ collapse: adder gets weird current readings because the multimeter probe is plug
 <adder> Red probe touching long leg.
 <Akuli> yeah
 
-raw:
-    <table>
-        <tr>
-            <th>Red probe</th>
-            <th>Black probe</th>
-            <th>Measured current</th>
-        </tr>
-        <tr>
-            <td>red alligator clip cable<br>(power supply positive)</td>
-            <td>longer leg (plus leg) of LED</td>
-            <td>5.6mA</td>
-        </tr>
-        <tr>
-            <td>longer leg (plus leg) of LED</td>
-            <td>red alligator clip cable<br>(power supply positive)</td>
-            <td>-5.6mA</td>
-        </tr>
-    </table>
+table:
+    | Red probe | Black probe | Measured current |
+    | --- | --- | --- |
+    | red alligator clip cable (power supply positive) | longer leg (plus leg) of LED | 5.6mA |
+    | longer leg (plus leg) of LED | red alligator clip cable (power supply positive) | -5.6mA |
 
 
 ## Direction of current

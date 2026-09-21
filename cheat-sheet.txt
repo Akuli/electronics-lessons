@@ -5,45 +5,14 @@ This page summarizes the most important equations and concepts.
 
 ## Quantities
 
-raw:
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Symbol</th>
-            <th>Unit</th>
-            <th>Description</th>
-        </tr>
-        <tr>
-            <td><a href="01">Voltage</a></td>
-            <td><code>V</code></td>
-            <td>volt<br><code>V</code></td>
-            <td>How much electricity wants to move from one point to another.</td>
-        </tr>
-        <tr>
-            <td><a href="03">Current</a></td>
-            <td><code>I</code></td>
-            <td>ampere (amp)<br><code>A</code></td>
-            <td>How much electricity is actually moving. 1A = very large number of electrons per second.</td>
-        </tr>
-        <tr>
-            <td><a href="04">Resistance</a></td>
-            <td><code>R</code></td>
-            <td>ohm<br><code>Ω = V/A</code></td>
-            <td>Determines the current through a resistor. Bigger resistance means less current for the same voltage.</td>
-        </tr>
-        <tr>
-            <td><a href="05">Power</a></td>
-            <td><code>P</code></td>
-            <td>watt<br><code>W = V*A</code></td>
-            <td>How much energy moves per second, or how much a component heats up</td>
-        </tr>
-        <tr>
-            <td><a href="06">Capacitance</a></td>
-            <td><code>C</code></td>
-            <td>farad<br><code>F</code></td>
-            <td>Determines the current through a capacitor. Bigger capacitance means more current (amps) is needed for the same charging or discharging speed (volts/second).</td>
-        </tr>
-    </table>
+table:
+    | Name | Symbol | Unit | Description |
+    | --- | --- | --- | --- |
+    | [Voltage](01) | `V` | volt<br>`V` | How much electricity wants to move from one point to another. |
+    | [Current](03) | `I` | ampere (amp)<br>`A` | How much electricity is actually moving. 1A = very large number of electrons per second. |
+    | [Resistance](04) | `R` | ohm<br>`Ω = V/A` | Determines the current through a resistor. Bigger resistance means less current for the same voltage. |
+    | [Power](05) | `P` | watt<br>`W = V*A` | How much energy moves per second, or how much a component heats up |
+    | [Capacitance](06) | `C` | farad<br>`F` | Determines the current through a capacitor. Bigger capacitance means more current (amps) is needed for the same charging or discharging speed (volts/second). |
 
 
 ## Important formulas
