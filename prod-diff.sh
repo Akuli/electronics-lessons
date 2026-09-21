@@ -26,7 +26,7 @@ for file in *.html */*.html; do
     remote_url="${BASE_URL}/${file}"
 
     # Capture diff output silently
-    diff_output=$(diff -u --color=always <(curl -fsL "$remote_url") "$file" || true)
+    diff_output=$(diff -w -u --color=always <(curl -fsL "$remote_url") "$file" || true)
 
     # Only output if differences were found
     if [ -n "$diff_output" ]; then

@@ -16,10 +16,10 @@ def read_title(filename):
 def parse_inline(text):
     """Parses inline formatting like **bold** text to HTML standard."""
     regex = r'''
-            (?P<br> <br\s*/?> )
+        (?P<br> <br\s*/?> )
         | (?P<link> \[ [^\[\]]+ \] \( [^()]+ \) )
-    | (?P<bold> \*\* .*? \*\* )
-    | (?P<code> ` .+? ` )
+        | (?P<bold> \*\* .*? \*\* )
+        | (?P<code> ` .+? ` )
     '''
 
     result = ""
@@ -58,34 +58,27 @@ def read_indented_block(lines, i):
 
 
 def parse_table_row(line):
-    line = line.strip()
-    if line.startswith("|"):
-        line = line[1:]
-    if line.endswith("|"):
-        line = line[:-1]
-    return [cell.strip() for cell in line.split("|")]
+    return [cell.strip() for cell in line.strip().strip("|").split("|")]
 
 
 def convert_table(lines, i):
     table_lines, i = read_indented_block(lines, i)
     rows = [parse_table_row(line) for line in table_lines if line.strip()]
-    if len(rows) < 2 or not all(re.fullmatch(r":?-{3,}:?", cell) for cell in rows[1]):
-        raise ValueError("table needs a header row followed by a separator row")
-    if len(rows[0]) != len(rows[1]) or any(len(row) != len(rows[0]) for row in rows[2:]):
-        raise ValueError("all table rows must have the same number of cells")
+    assert len(rows) >= 3
+    assert all(re.fullmatch(r"-{3,}", cell) for cell in rows[1])
+    assert all(len(row) == len(rows[0]) for row in rows)
 
     print("<table>")
-    print("<thead><tr>")
+    print("<tr>")
     for cell in rows[0]:
         print(f"<th>{parse_inline(cell)}</th>")
-    print("</tr></thead>")
-    print("<tbody>")
+    print("</tr>")
     for row in rows[2:]:
         print("<tr>")
         for cell in row:
             print(f"<td>{parse_inline(cell)}</td>")
         print("</tr>")
-    print("</tbody></table>")
+    print("</table>")
     return i
 
 
